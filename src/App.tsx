@@ -1,6 +1,6 @@
 import RenderRouter from "./routes";
 import { BrowserRouter as Router } from "react-router-dom";
-import { ConfigProvider, Drawer, Spin, theme as a } from "antd";
+import { ConfigProvider, Drawer, Spin, theme as a, notification } from "antd";
 import Loading from "components/elements/Loading";
 import { useGlobalAppStore } from "store/useGlobalApp";
 import { useEffect, useState } from "react";
@@ -11,7 +11,15 @@ import { socket } from "lib/socket";
 import LuckyMoney from "pages/activity/components/LuckyMoney";
 import Agency from "pages/vip/Agency";
 import VipFarmReward from "components/ui/VipFarmReward";
-
+import ModalBase from "components/elements/ModalBase";
+import Activities from "components/ui/Activities";
+import Deposit from "components/ui/Deposit";
+import Profile from "pages/profile";
+import Withdraw from "components/ui/Withdraw";
+import close_icon from 'assets/img_custom/clolor_dialog_close.png'
+import clsx from "clsx";
+import DailyCheckin from "pages/activity/DailyCheckin";
+import LuckyWeel from "pages/activity/LuckyWeel";
 
 function App() {
   const { loading, handleSetConfig, handleSetEvents, configApp, handleToggleModal, openModal } = useGlobalAppStore()
@@ -127,10 +135,6 @@ function App() {
   }, [configApp?.LIVECHAT_ID]);
 
 
-  const BASE_WIDTH = 430; // chiều rộng mobile mong muốn
-
-
-
   return (
     <ConfigProvider>
       {
@@ -138,11 +142,52 @@ function App() {
       }
       <Drawer
         width="100rem"
-        open={!!openModal} onClose={() => handleToggleModal(false)}>
+        zIndex={9999}
+        open={openModal.type === 'drawer' && !!openModal.name} onClose={() => handleToggleModal({
+          name: "",
+          type: "",
+          title: ""
+        })}
+        className={"bg_custom_drawer"}
+        title={openModal?.title}
+        closeIcon={
+          <img src={close_icon} width={50} />
+        }
+      >
         {
-          openModal === 'agency' && <VipFarmReward/>
+          openModal.name === 'vipfarm' && <VipFarmReward />
+        }
+        {
+          openModal.name === 'deposit' && <Deposit />
+        }
+        {
+          openModal.name === 'withdraw' && <Withdraw />
+        }
+        {
+          openModal.name === 'profile' && <Profile />
         }
       </Drawer>
+
+      <ModalBase
+
+        isModalOpen={openModal.type === 'modal' && !!openModal.name}
+        onCancel={() => handleToggleModal({
+          name: "",
+          type: "",
+          title: ""
+        })}
+        titleHeader={openModal?.title}>
+        {
+          openModal.name === 'activities' && <Activities />
+        }
+        {
+          openModal.name === 'checkin' && <DailyCheckin />
+        }
+        {
+          openModal.name === 'lucky_draw' && <LuckyWeel />
+        }
+      </ModalBase>
+
       <Router>
         <RenderRouter />
       </Router>

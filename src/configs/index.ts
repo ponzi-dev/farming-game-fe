@@ -7,7 +7,8 @@ export const ROUTES_HEADER_HIDDEN = [
   "/lucky-draw",
   "/treasure",
   "/agency",
-  "/farm"
+  "/farm",
+  "/terms-and-privacy"
 ];
 export const ROUTES_TABBAR_HIDDEN = [
   "/login",
@@ -16,4 +17,5 @@ export const ROUTES_TABBAR_HIDDEN = [
   "/lucky-draw",
   "/treasure",
   "/farm",
+  "/terms-and-privacy"
 ];

@@ -22,7 +22,8 @@ import LuckyWeel from "pages/activity/LuckyWeel";
 import Treasure from "pages/activity/Mines";
 import bg from 'assets/img_custom/launch_image_bg.png'
 import Farm from "pages/farm";
-import RightSidebar from "components/ui/menu/RightSidebar";
+import RightSidebar from "layouts/RightSidebar";
+import TermsAndPrivacy from "pages/about/TermsAndPrivacy";
 
 const routeList: RouteObject[] = [
   {
@@ -50,6 +51,15 @@ const routeList: RouteObject[] = [
       <WrapperRouteComponent
         auth
         element={<HomePage />}
+        title="Home"
+      />
+    ),
+  },
+  {
+    path: "/terms-and-privacy",
+    element: (
+      <WrapperRouteComponent
+        element={<TermsAndPrivacy />}
         title="Home"
       />
     ),
@@ -125,17 +135,6 @@ const routeList: RouteObject[] = [
     ),
 
   },
-  {
-    path: "/farm/:id",
-    element: (
-      <WrapperRouteComponent
-        auth
-        element={<Farm />}
-        title="My Farm"
-      />
-    ),
-  }
-
 ];
 const RenderRouter = () => {
   const { r } = getJSONFromUrl()
@@ -145,7 +144,7 @@ const RenderRouter = () => {
   const { onSetUser, logged, user } = useAuthApp()
   const { isCallBackUser, handleSetConfig } = useGlobalAppStore()
   const checkHiddenHeader = ROUTES_HEADER_HIDDEN.includes(pathname) || pathname.startsWith('/farm/')
-  const isFarmDetail = useMatch(pathname)
+
 
   const getUser = useCallback(async () => {
     try {
@@ -173,7 +172,6 @@ const RenderRouter = () => {
     if ((pathname === '/login' || pathname === '/register') && logged) {
       return navigate('/');
     }
-
     getUser();
   }, [logged, isCallBackUser]);
 
@@ -202,11 +200,11 @@ const RenderRouter = () => {
           </div>
         </div>
       </div>
-      <RightSidebar/>
+      <RightSidebar />
       {
         !ROUTES_TABBAR_HIDDEN.includes(pathname) && !pathname.startsWith('/farm/') && <MainTabbar />
       }
-      
+
 
     </div>
   )

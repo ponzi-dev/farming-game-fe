@@ -1,8 +1,13 @@
+import React from "react";
 import { create } from "zustand";
 
 export type GlobalAppState = {
   isDarkMode: boolean;
-  openModal: string | boolean;
+  openModal: {
+    type:string,
+    name:string,
+    title?:string | React.ReactNode,
+  },
   loading: boolean;
   isCallBackUser: boolean;
   configApp: any;
@@ -15,18 +20,29 @@ export type GlobalAppActions = {
   handleCallbackUser: () => void;
   handleSetConfig: (val: any) => void;
   handleSetEvents: (val: any) => void;
-  handleToggleModal: (val: any) => void;
+  handleToggleModal: (val: {
+    type:string,
+    name:string,
+    title?:string | React.ReactNode
+  }) => void;
 };
 
 export const useGlobalAppStore = create<GlobalAppState & GlobalAppActions>(
   (set) => ({
-    openModal: false,
+    openModal: {
+      type:"",
+      name:"",
+    },
     events: null,
     isDarkMode: false,
     isCallBackUser: false,
     loading: false,
     configApp: null,
-    handleToggleModal: (val: boolean) => {
+    handleToggleModal: (val: {
+      type:string,
+      name:string,
+      title?:string | React.ReactNode
+    }) => {
       set((state) => {
         state.openModal = val;
         return { ...state };
