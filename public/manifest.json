@@ -1,0 +1,16 @@
+{
+  "short_name": "Rich Farmer",
+  "name": "Rich Farmer NFT App Farming",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64",
+      "type": "image/x-icon"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff",
+  "description": "Rich Farmer is a next-generation investment platform where players can own NFT farmer characters, develop digital farms, and earn income through a play-to-earn model. The game is not only entertaining but also opens up opportunities to generate sustainable income in the Web3 world."
+}
