@@ -1,0 +1,10 @@
+.reward-fist .ant-modal-content {
+  background-color: unset;
+  box-shadow: unset;
+  background: url("../assets/img_custom/game_caravan_bg_dialog_start.webp");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 400px;
+  position: relative;
+}

@@ -1,59 +1,88 @@
+import { useEffect, useState } from 'react';
+import { useAuthApp } from 'store/useAuthApp';
+import { useGlobalAppStore } from 'store/useGlobalApp';
+import requestService from 'api/request';
 import Land from './Land';
+import { useTranslation } from 'react-i18next';
+import { CountdownRenderProps } from 'react-countdown';
+import { socket } from 'lib/socket';
 
 const HomeFarm = () => {
-  const currentUnlockedIndex = 1; // index ô đất hiện đang mở (open)
-
-  // Hàm lấy props cho ô đất theo index 0..8
-  const getLandProps = (idx: number) => {
-    if (idx <= currentUnlockedIndex) {
-      return {}; // open (không khóa, không mark)
+  const { handleLoading } = useGlobalAppStore();
+  const { user } = useAuthApp();
+  const [orders, setOrders] = useState([]);
+  const currentUnlockedIndex = user?.currentUnlockedIndex || 1;
+  const { t } = useTranslation()
+  // Gọi API lấy order
+  const getOrders = async () => {
+    handleLoading(true);
+    try {
+      const res = await requestService.get('/tickets/orders');
+      if (res?.data) {
+        setOrders(res.data?.data);
+        // socket.emit("getOrders", { userId: user?._id });
+      }
+    } catch (error) {
+      console.error('Error fetching orders:', error);
     }
-    if (idx === currentUnlockedIndex + 1) {
-      return { isMark: true, isLock: true }; // ô tiếp theo hiển thị mark
-    }
-    return { isLock: true, isShowLock: true }; // các ô còn lại khoá
+    handleLoading(false);
   };
+
+  useEffect(() => {
+    if (user?._id)
+      getOrders();
+  }, [user?._id]);
+
+  // Trả về props cho mỗi Land
+  const getLandProps = (idx: number) => {
+    if (idx <= currentUnlockedIndex) return {};
+    if (idx === currentUnlockedIndex + 1) return { isMark: true, isLock: true };
+    return { isLock: true, isShowLock: true };
+  };
+
+  // Mảng định nghĩa vị trí land trên lưới 5x5 (index từ 1 đến 9)
+  const layoutMap: (number | null)[][] = [
+    [null, null, null, null, null],         // Row 1
+    [null, 1, 2, 3, null],                  // Row 2
+    [null, 4, 5, 6, null],                  // Row 3
+    [null, 7, 8, 9, null],                  // Row 4
+    [null, null, null, null, null],         // Row 5
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      socket.emit("getOrders", { userId: user?._id });
+    }, 1000); // 3 giây 1 lần hoặc tùy bạn
+
+    socket.on("emitOrders", (data) => {
+      setOrders(data);
+    });
+
+    return () => {
+      clearInterval(interval);
+      socket.off("emitOrders");
+    };
+  }, [user?._id]);
+
 
   return (
     <div className="grid grid-cols-5 gap-1 w-full h-full rotate-45 origin-center">
-      {/* Row 1 */}
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
+      {layoutMap.flat().map((idx, i) => {
+        if (!idx) {
+          return <div key={i}></div>; // Ô trống
+        }
 
-      {/* Row 2 */}
-      <div></div>
-      <Land {...getLandProps(1)} />
-      <Land {...getLandProps(2)} />
-      <Land {...getLandProps(3)} />
-      <div></div>
+        const order = orders?.[idx - 1];
+        const props = getLandProps(idx);
 
-      {/* Row 3 */}
-      <div className="relative"></div>
-      <Land {...getLandProps(4)} />
-      <Land {...getLandProps(5)} />
-
-      <Land {...getLandProps(6)} />
-      <div className="relative"></div>
-
-      {/* Row 4 */}
-      <div></div>
-
-      <Land {...getLandProps(7)} />
-
-      <Land {...getLandProps(8)} />
-
-      <Land {...getLandProps(9)} />
-      <div></div>
-
-      {/* Row 5 */}
-      <div></div>
-      <div></div>
-      <div className="relative"></div>
-      <div></div>
-      <div></div>
+        return (
+          <Land
+            key={`${idx}-${i}`}
+            {...props}
+            order={order}
+          />
+        );
+      })}
     </div>
   );
 };

@@ -24,6 +24,7 @@ import bg from 'assets/img_custom/launch_image_bg.png'
 import Farm from "pages/farm";
 import RightSidebar from "layouts/RightSidebar";
 import TermsAndPrivacy from "pages/about/TermsAndPrivacy";
+import LeftSidebar from "layouts/LeftSidebar";
 
 const routeList: RouteObject[] = [
   {
@@ -201,6 +202,7 @@ const RenderRouter = () => {
         </div>
       </div>
       <RightSidebar />
+      <LeftSidebar />
       {
         !ROUTES_TABBAR_HIDDEN.includes(pathname) && !pathname.startsWith('/farm/') && <MainTabbar />
       }

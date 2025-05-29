@@ -28,7 +28,11 @@ const Activities = () => {
             width={80}
             height={30}
             onEvent={() => {
-
+              handleToggleModal({
+                name: "lucky_box",
+                type: "modal",
+                title: "Lucky Box"
+              })
             }}
           />
         </ListItem>

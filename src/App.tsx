@@ -17,15 +17,36 @@ import Deposit from "components/ui/Deposit";
 import Profile from "pages/profile";
 import Withdraw from "components/ui/Withdraw";
 import close_icon from 'assets/img_custom/clolor_dialog_close.png'
-import clsx from "clsx";
 import DailyCheckin from "pages/activity/DailyCheckin";
 import LuckyWeel from "pages/activity/LuckyWeel";
+import Treasure from "pages/activity/Mines";
+import { useStoreFarm } from "store/useStoreFarm";
+import UnlockLand from "components/ui/UnlockLand";
+import Ranking from "components/ui/Ranking";
 
 function App() {
   const { loading, handleSetConfig, handleSetEvents, configApp, handleToggleModal, openModal } = useGlobalAppStore()
-  const { user } = useAuthApp()
-  const [scale, setScale] = useState(1);
+  const { user, logged } = useAuthApp()
+  const { onSetDataInvest, dataInvest } = useStoreFarm()
   const { t, i18n } = useTranslation();
+
+  const getTickets = async () => {
+    try {
+      const res = await requestService.get('/tickets')
+      if (res && res.data) {
+        onSetDataInvest(res?.data?.data)
+      }
+    } catch (error) {
+      console.log('====================================');
+      console.log(error);
+      console.log('====================================');
+    }
+  }
+
+  useEffect(() => {
+    if (logged && !dataInvest?.length)
+      getTickets()
+  }, [logged])
 
   useEffect(() => {
     const joinApp = () => {
@@ -56,10 +77,6 @@ function App() {
     };
   }, [user]);
 
-
-
-
-
   const getConfigApp = async () => {
     try {
       const res = await requestService.get('/config')
@@ -88,11 +105,8 @@ function App() {
 
   useEffect(() => {
     // Initial fetch on mount
-
-
-
     // Listen to socket events only if user exists
-    if (user) {
+    if (user?._id) {
       getEvents();
       getConfigApp();
       socket.on("getConfig", () => {
@@ -105,7 +119,7 @@ function App() {
     return () => {
       socket.off("getConfig");
     };
-  }, [user]);
+  }, [user?._id]);
 
   useEffect(() => {
     if (localStorage.getItem('lang')) {
@@ -185,6 +199,15 @@ function App() {
         }
         {
           openModal.name === 'lucky_draw' && <LuckyWeel />
+        }
+        {
+          openModal.name === 'lucky_box' && <Treasure />
+        }
+        {
+          openModal.name === 'buy_land' && <UnlockLand />
+        }
+        {
+          openModal.name === 'ranking' && <Ranking />
         }
       </ModalBase>
 

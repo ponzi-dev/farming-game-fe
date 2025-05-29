@@ -7,10 +7,8 @@ import { useTranslation } from 'react-i18next'
 import { useAuthApp } from 'store/useAuthApp'
 import { useGlobalAppStore } from 'store/useGlobalApp'
 import { useCopyToClipboard } from "@uidotdev/usehooks";
-import Countdown from 'react-countdown'
 import { AddPaymentMethod } from './AddPaymentMethod'
 import PinInput from 'react-pin-input'
-import dolar from 'assets/images/dollar.png'
 import useBreakpoint from 'hooks/useBreakpoint'
 
 
@@ -402,8 +400,8 @@ const Withdraw = () => {
           ref={pinRef}
           type="numeric"
           style={{ padding: '10px', width: "100%", display: 'flex', justifyContent: 'center', gap: "5px" }}
-          inputStyle={{ borderColor: '#1a9351', borderRadius: "10px" }}
-          inputFocusStyle={{ borderColor: '#0f7c52' }}
+          inputStyle={{ borderColor: '#733e39', borderRadius: "10px", borderWidth: '4px' }}
+          inputFocusStyle={{ borderColor: '#733e39' }}
           onComplete={async (value, index) => {
             handleReset()
             setOpenConfirm(false)

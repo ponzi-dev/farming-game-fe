@@ -54,14 +54,14 @@ const Deposit = () => {
 
     handleLoading(true)
     try {
-      const token = await getRecaptchaToken();
+      // const token = await getRecaptchaToken();
       const res = await requestService.post('/profile/deposit', {
         data: {
           amount,
           fiatAmount: amount * configApp?.rateUsd || 26000,
           paymentMethod,
           note: "MP" + Date.now(),
-          recaptchaToken: token
+          // recaptchaToken: token
         }
       })
       if (res && res.data) {

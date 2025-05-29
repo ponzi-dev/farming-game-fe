@@ -56,7 +56,7 @@ const MainHeader = () => {
               </div>
             })}
           >
-            <img src={addMoney} width={35} />
+            <img src={addMoney} width={30} />
           </div>
         </div>
       </div>

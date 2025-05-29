@@ -6,6 +6,7 @@ type IUser = {
   inviteUser?: [string];
   profilePicUrl?: string;
   phone?: string;
+  currentUnlockedIndex:number | 0;
   totalWithdrawValue: number | 0;
   totalbuyTicket: number | 0;
   totalRewardToday: number | 0;

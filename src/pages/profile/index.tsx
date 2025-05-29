@@ -8,7 +8,7 @@ import SecurityCenter from 'components/ui/SecurityCenter'
 import { formatNumber, hidePhoneNumber, removeLocalStoreageUser } from 'lib/helpers'
 import React, { useState } from 'react'
 import avt_default from 'assets/img_custom/public_botany_2.png'
-import icon_agency from "assets/img_custom/color_integral_root_reward_hall_icon.png"
+import icon_agency from "assets/img_custom/color_wd_invite_icon.png"
 import icon_history from 'assets/img_custom/color_achievement_icon_4.png'
 import icon_analys from 'assets/img_custom/color_wd_success_pop_money1.png'
 import { useTranslation } from 'react-i18next'

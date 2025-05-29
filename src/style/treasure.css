@@ -1,10 +1,8 @@
 .game--card {
-    background-color: #000;
-    border: 1px solid #bbb;
-    border-top: 5px solid rgb(5, 171, 127);
-    border-radius: 12px;
-    padding: 50px 25px;
-    margin: 0 auto;
+  border: 1px solid #bbb;
+
+  border-radius: 12px;
+  margin: 0 auto;
 }
 .mine-box-wrapper {
   height: 100%;
@@ -30,12 +28,12 @@
   padding: 8px;
   position: absolute;
   width: 100%;
-  background-color: #232640;
+  background-color: rgb(7, 18, 58);
 }
 
 .mine-box-front img {
   height: 95%;
- 
+
   transition: all 0.3s ease;
   user-select: none;
   width: 95%;
@@ -44,7 +42,6 @@
 
 .mine-box.active-hidden {
   cursor: not-allowed;
- 
 }
 
 .mine-box-hidden {
@@ -105,4 +102,3 @@
   height: 80px;
   width: calc(100% / 3 - 13px);
 }
-

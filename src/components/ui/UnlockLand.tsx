@@ -1,0 +1,32 @@
+import { useGlobalAppStore } from "store/useGlobalApp"
+
+const UnlockLand = () => {
+  const { handleToggleModal } = useGlobalAppStore()
+  return (
+    <div className='text-[12px] text-[#000]  z-50 relative h-[250px] flex flex-col justify-center'>
+      <p className="text-center text-black text-[15px]">
+        Bạn có muốn <strong className="text-red-600">mở khóa ô đất này với 5U</strong> không?<br />
+        <span className="text-gray-700">Khám phá vùng đất mới và bắt đầu xây dựng trang trại của bạn ngay hôm nay!</span>
+      </p>
+      <div className="mt-4 flex justify-center gap-4">
+        <div className="mt-4 flex justify-center gap-4">
+          <button className="bg-green-500 hover:bg-green-600 text-white px-5 py-2 rounded-lg text-[15px] font-semibold shadow">
+            Mở khóa
+          </button>
+          <button
+            onClick={() => handleToggleModal({
+              name: "",
+              type: "",
+              title: ""
+            })}
+            className="bg-gray-300 hover:bg-gray-400 text-black px-5 py-2 rounded-lg text-[15px] font-semibold">
+            Hủy
+          </button>
+        </div>
+      </div>
+
+    </div>
+  )
+}
+
+export default UnlockLand

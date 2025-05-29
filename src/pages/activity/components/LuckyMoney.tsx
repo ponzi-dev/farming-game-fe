@@ -1,5 +1,5 @@
 import { message, Modal, notification } from 'antd'
-import choujiang from 'assets/images/lixi.png'
+import choujiang from 'assets/img_custom/frp_dlg_recharge_rewards_bg.webp'
 import iconClose from 'assets/images/home_dialog_close.png'
 import home_red from 'assets/img_custom/find_cp_ic_reward_red_package.webp'
 import home_txt from 'assets/img_custom/color_task_active_icon_1.png'
@@ -21,7 +21,7 @@ const LuckyMoney = () => {
   const { handleCallbackUser, events, handleLoading } = useGlobalAppStore()
 
   const handleOpenLuckyMoney = async () => {
- 
+
     if (loading) return
     try {
       setLoading(true)
@@ -100,9 +100,11 @@ const LuckyMoney = () => {
               <img src={reward_bg} />
             </div>
             :
-            <div className='relative lixi-event-animation cursor-pointer' onClick={() => handleOpenLuckyMoney()}>
+            <div className='
+            size-[200px] mx-auto
+            relative lixi-event-animation cursor-pointer' onClick={() => handleOpenLuckyMoney()}>
               <img src={choujiang} className=' cursor-pointer' />
-              <div className='absolute top-[25%] left-0 w-full h-full flex flex-col justify-center items-center '>
+              <div className='absolute top-[40%] left-0 w-full h-full flex flex-col justify-center items-center '>
                 <div className=' flex gap-[5rem] items-center text-[2rem] mb-[20px]'>
                   <div className='text-[#fff] font-[900]'>
                     {t("Thời gian kết thúc")} : <>
@@ -146,6 +148,10 @@ const LuckyMoney = () => {
                   </div>
                 </div> */}
               </div>
+              <div className='absolute top-[5%] left-0 w-full h-full flex flex-col justify-center items-center text-[20px] font-[900] text-[#bc6060]'>
+                Mở
+              </div>
+
             </div>
 
         }
