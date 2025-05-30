@@ -10,6 +10,7 @@ import { useTranslation } from 'react-i18next';
 import { useAuthApp } from 'store/useAuthApp';
 import { useGlobalAppStore } from 'store/useGlobalApp';
 import requestService from 'api/request';
+import clsx from 'clsx';
 interface Props {
   isLock?: boolean;
   isMark?: boolean;
@@ -19,7 +20,7 @@ interface Props {
 
 const Land = ({ isLock, order, isMark, isShowLock }: Props) => {
   const [showIconHarvest, setShowIconHarvest] = useState(true)
-  const { handleCallbackUser, handleLoading, handleToggleModal } = useGlobalAppStore()
+  const { handleCallbackUser, handleLoading, handleToggleModal, loading } = useGlobalAppStore()
   const { t } = useTranslation()
 
   const handleHarvest = async (id: string) => {
@@ -33,11 +34,11 @@ const Land = ({ isLock, order, isMark, isShowLock }: Props) => {
         }
       })
       if (res && res.data) {
-        notification.success({
-          message: "Claim success !",
-          duration: 3,
-          placement: "top"
-        })
+        // notification.success({
+        //   message: "Claim success !",
+        //   duration: 3,
+        //   placement: "top"
+        // })
         handleCallbackUser()
         // socket.emit("fetchOrderDetail", { orderId: id, userId: user?._id });
       }
@@ -49,9 +50,7 @@ const Land = ({ isLock, order, isMark, isShowLock }: Props) => {
         placement: "top"
       })
     } finally {
-      setTimeout(() => {
-        handleLoading(false)
-      }, 1500)
+      handleLoading(false)
 
     }
 
@@ -72,6 +71,7 @@ const Land = ({ isLock, order, isMark, isShowLock }: Props) => {
     );
   };
 
+
   return (
     <div className="relative">
       {isMark && (
@@ -88,7 +88,7 @@ const Land = ({ isLock, order, isMark, isShowLock }: Props) => {
           >
             <div className="absolute top-[-10px] left-0 z-[10] w-full h-full rotate-[-45deg] flex justify-center items-center">
               <div className='flex gap-1 items-center text-[12px] font-[700] rotate-[45deg]'>
-                5
+                8
                 <img src={"/icons/diamond-icon.svg"} width={18} />
               </div>
             </div>
@@ -117,9 +117,11 @@ const Land = ({ isLock, order, isMark, isShowLock }: Props) => {
       )}
       {
         order && !isLock &&
-        <div className='absolute top-[-10px]  rotate-[-45deg] left-[-20px]'>
+        <div className='absolute top-1/2 translate-y-[-50%]  rotate-[-45deg] left-1/2 translate-x-[-50%] w-full h-full'>
           <div className='relative cursor-pointer'>
-            <Popover trigger={['click', 'hover', 'focus']}
+            <Popover
+              className='popover-custom'
+              trigger={['click', 'hover', 'focus']}
               onOpenChange={(vl) => setShowIconHarvest(!vl)}
               content={
                 /// info animal
@@ -128,15 +130,15 @@ const Land = ({ isLock, order, isMark, isShowLock }: Props) => {
                   <div className='flex gap-2 items-center'>
 
                     <div className='flex flex-col'>
-                      <div className='text-[12px] text-[#0e0d0d]'>
+                      <div className='text-[10px] text-[#0e0d0d]'>
                         Thời gian sống : <Countdown
                           renderer={renderer}
                           date={order?.endTime}
                         />
                       </div>
-                      <div className='text-[12px] text-[#0e0d0d] flex items-center gap-1'>
+                      <div className='text-[10px] text-[#0e0d0d] flex items-center gap-1'>
                         Sản lượng hôm nay:  <span className='font-[900]'>
-                          +{Number(order?.currentIncome?.toFixed(5))}
+                          + {Number(order?.currentIncome?.toFixed(5))}
                           <img src={'/icons/diamond-icon.svg'} width={15} className='inline ml-2' />
                         </span>
                       </div>
@@ -157,7 +159,11 @@ const Land = ({ isLock, order, isMark, isShowLock }: Props) => {
                 </div>}>
               <img
                 src={order?.ticket?.desImage}
-                className=" w-full h-full " ///animal-move
+                className={clsx(" w-full h-full ", {
+                  "scale-[1.5]": order?.ticket?.vip === 4,
+                  "scale-[1.4]": order?.ticket?.vip === 5,
+                  "mt-[-10px]": order?.ticket?.vip === 5
+                })} ///animal-move
                 alt="animal"
               />
             </Popover>
@@ -181,29 +187,30 @@ const Land = ({ isLock, order, isMark, isShowLock }: Props) => {
 
 
             {/* Progress */}
-            {
-              !((Date.now() >= order?.rewardTime || Date.now() >= order?.endTime) && order?.status) &&
-              <div className='absolute bottom-[5%] left-[60%] translate-x-[-50%] translate-y-[-50%] z-[9999]'>
-                <div className='w-[70px] relative'>
-                  <Progress percent={((Date.now() - order?.startTime) / (order?.rewardTime - order?.startTime)) * 100}
-                    trailColor={"#fefefe"}
-                    strokeColor="#42c885"
-                    showInfo={false}
-                    status="active"
-                  />
-                  <div className='absolute top-0 left-0 w-full h-full flex justify-center items-center'>
-                    <div className='text-[7px] text-[#3c3a45] mt-[-3px] font-[700]'>
-                      <Countdown
-                        renderer={renderer}
-                        date={order?.rewardTime}
-                      />
-                    </div>
+
+
+          </div>
+          {
+            !((Date.now() >= order?.rewardTime || Date.now() >= order?.endTime)) &&
+            <div className='absolute bottom-[10%] left-[50%] translate-x-[-50%]  z-[9999]'>
+              <div className='w-[70px] relative'>
+                <Progress percent={((Date.now() - order?.startTime) / (order?.rewardTime - order?.startTime)) * 100}
+                  trailColor={"#fefefe"}
+                  strokeColor="#42c885"
+                  showInfo={false}
+                  status="active"
+                />
+                <div className='absolute top-0 left-0 w-full h-full flex justify-center items-center'>
+                  <div className='text-[5px] text-[#4d4e56] mt-[-2px] font-[700]'>
+                    <Countdown
+                      renderer={renderer}
+                      date={order?.rewardTime}
+                    />
                   </div>
                 </div>
               </div>
-            }
-
-          </div>
+            </div>
+          }
         </div>
       }
 

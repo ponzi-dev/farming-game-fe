@@ -6,7 +6,7 @@ import { getUrl } from 'lib/helpers';
 import { useCopyToClipboard } from '@uidotdev/usehooks';
 import { useGlobalAppStore } from 'store/useGlobalApp';
 import { useTranslation } from 'react-i18next';
-
+import close_icon from 'assets/img_custom/clolor_dialog_close.png'
 interface Props {
   open: boolean,
   onClose: () => void
@@ -28,13 +28,7 @@ const InviteFriend = ({ onClose, open }: Props) => {
         placement={'right'}
         closable={true}
         closeIcon={
-          <div>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-5 hover:text-[#000]">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
-            </svg>
-
-
-          </div>
+          <img src={close_icon} width={50} />
         }
         onClose={() => onClose()}
         width="100rem"
@@ -44,10 +38,10 @@ const InviteFriend = ({ onClose, open }: Props) => {
         <div data-v-7e679115="" className="page-content">
           <div data-v-7e679115="" className="invite-card">
             <div data-v-7e679115="" className="card-content">
-              <div data-v-7e679115="" className="card-title">
+              <div data-v-7e679115="" className="card-title !text-[25px]">
                 {t("Invite friends to join")}
               </div>
-              <div data-v-7e679115="" className="card-subtitle">
+              <div data-v-7e679115="" className="card-subtitle !text-[17px]">
                 {t("Share to get more rewards")}
               </div>
               <div data-v-7e679115="" className="reward-info">

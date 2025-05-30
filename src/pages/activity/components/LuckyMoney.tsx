@@ -1,6 +1,6 @@
 import { message, Modal, notification } from 'antd'
 import choujiang from 'assets/img_custom/frp_dlg_recharge_rewards_bg.webp'
-import iconClose from 'assets/images/home_dialog_close.png'
+import iconClose from 'assets/img_custom/clolor_dialog_close.png'
 import home_red from 'assets/img_custom/find_cp_ic_reward_red_package.webp'
 import home_txt from 'assets/img_custom/color_task_active_icon_1.png'
 import { useState } from 'react'

@@ -4,7 +4,7 @@ import { formatNumber } from 'lib/helpers'
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import MemberItem from '../MemberItem'
-import Empty from 'components/elements/Empty'
+import close_icon from 'assets/img_custom/clolor_dialog_close.png'
 
 interface Props {
   setOpen: (val: boolean) => void,
@@ -49,13 +49,7 @@ const TeamInvite = ({ open, setOpen }: Props) => {
       }}
       closable={true}
       closeIcon={
-        <div>
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-5 hover:text-[#000]">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
-          </svg>
-
-
-        </div>
+        <img src={close_icon} width={50} />
       }
       onClose={() => setOpen(false)}
       width="100rem"

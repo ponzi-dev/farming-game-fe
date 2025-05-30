@@ -117,10 +117,6 @@
   font-size: 4.8rem;
   font-weight: 600;
   color: #ff8c1a;
-  font-family:
-    DM Mono,
-    Monaco,
-    monospace;
 }
 
 .salary-item .salary-info .amount .unit[data-v-0c054b6c] {
@@ -175,14 +171,10 @@
 .salary-item .progress-bar .progress-info .progress-numbers[data-v-0c054b6c] {
   font-size: 3.2rem;
   color: #ff8c1a;
-  font-family:
-    DM Mono,
-    Monaco,
-    monospace;
 }
 
 .salary-item .progress-bar .progress-track[data-v-0c054b6c] {
-  height: 1.06667rem;
+  height: 1.86667rem;
   background: #e8e8e8;
   border-radius: 0.83333rem;
   overflow: hidden;

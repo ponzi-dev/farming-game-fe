@@ -1,11 +1,9 @@
 import requestService from 'api/request'
-import { AddPaymentMethod } from 'components/ui/AddPaymentMethod'
-import { DrawerLang } from 'components/ui/DrawerLang'
 import TeamInvite from 'components/ui/home/TeamInvite'
 import InviteFriend from 'components/ui/InviteFriend'
 import RecordUserHistoires from 'components/ui/RecordUserHistory'
 import SecurityCenter from 'components/ui/SecurityCenter'
-import { formatNumber, hidePhoneNumber, removeLocalStoreageUser } from 'lib/helpers'
+import { hidePhoneNumber, removeLocalStoreageUser } from 'lib/helpers'
 import React, { useState } from 'react'
 import avt_default from 'assets/img_custom/public_botany_2.png'
 import icon_agency from "assets/img_custom/color_wd_invite_icon.png"
@@ -28,29 +26,33 @@ import InvestmentStatistics from 'components/ui/InvestmentStatistics'
 import { useGlobalAppStore } from 'store/useGlobalApp'
 const Profile = () => {
   const { user, logoutUser } = useAuthApp()
-  const { handleToggleModal } = useGlobalAppStore()
-  const navigate = (val: any) => alert(1)
+  const { handleToggleModal, handleLoading } = useGlobalAppStore()
 
-  const [openAddMethod, setAddMethod] = useState(false)
   const [openInvitefriend, setOpenInviteFriend] = useState(false)
   const [openTeam, setOpenTeam] = useState(false)
   const [openSecurity, setOpenSecurity] = useState(false)
   const [openRecord, setOpenRecord] = useState(false)
-  const [openVipReward, setOpenVipReward] = useState(false)
   const [openInvestStatistics, setOpenInvestStatistics] = useState(false)
 
   const { t, i18n } = useTranslation();
 
   const handleLogout = async () => {
+    handleToggleModal({
+      name: "",
+      type: "",
+      title: ""
+    })
     try {
+      handleLoading(true)
       const res = await requestService.delete('/profile')
       if (res && res.data) {
         logoutUser()
         removeLocalStoreageUser()
-        navigate('/login')
+        handleLoading(false)
 
       }
     } catch (error) {
+      handleLoading(false)
       console.log(error);
 
     }
@@ -104,7 +106,7 @@ const Profile = () => {
           </div>
           <div data-v-4f0a6390="" className="user-detail">
             <div data-v-4f0a6390="" className="nickname">
-              {user && hidePhoneNumber(user?.phone + "")}
+              {user && user?.phone}
             </div>
             <div data-v-4f0a6390="" className="user-id">
               ID: {user?.userId}
@@ -155,7 +157,10 @@ const Profile = () => {
           <img src={bg_menu} className='w-full h-full' />
           <div data-v-4f0a6390="" className="action-group !mb-0">
 
-            <div data-v-4f0a6390="" className="action-item" onClick={() => setOpenInvestStatistics(true)}>
+            <div data-v-4f0a6390="" className="action-item" onClick={() => {
+              setOpenInvestStatistics(true)
+
+            }}>
               <div data-v-4f0a6390="" className="action-left">
 
                 <img src={icon_analys}

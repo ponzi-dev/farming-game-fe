@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { DrawerLang } from './DrawerLang'
-
+import close_icon from 'assets/img_custom/clolor_dialog_close.png'
 interface Props {
   setOpen: (val: boolean) => void,
   open: boolean,
@@ -80,9 +80,7 @@ const SecurityCenter = ({ open, setOpen }: Props) => {
               reset()
 
             }}>
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
-              </svg>
+              <img src={close_icon} width={30} />
 
             </div>
           </div>
@@ -263,13 +261,7 @@ const SecurityCenter = ({ open, setOpen }: Props) => {
         }}
         closable={true}
         closeIcon={
-          <div>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-5 hover:text-[#000]">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
-            </svg>
-
-
-          </div>
+          <img src={close_icon} width={50} />
         }
         onClose={() => setOpen(false)}
         width="100rem"
@@ -281,19 +273,7 @@ const SecurityCenter = ({ open, setOpen }: Props) => {
           <div data-v-631327fb="" className="security-list">
             <div data-v-631327fb="" className="security-item" onClick={() => setOpenChange("pass_login")}>
               <div data-v-631327fb="" className="item-left">
-                <svg
-                  data-v-631327fb=""
-                  className="inline-block security-icon"
-                  viewBox="0 0 24 24"
-                  width="1.2em"
-                  height="1.2em"
-                  style={{ color: "rgb(25, 137, 250)" }}
-                >
-                  <path
-                    fill="currentColor"
-                    d="M12 17a2 2 0 0 0 2-2a2 2 0 0 0-2-2a2 2 0 0 0-2 2a2 2 0 0 0 2 2m6-9a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V10a2 2 0 0 1 2-2h1V6a5 5 0 0 1 5-5a5 5 0 0 1 5 5v2zm-6-5a3 3 0 0 0-3 3v2h6V6a3 3 0 0 0-3-3"
-                  />
-                </svg>
+                <img src="https://img.icons8.com/?size=100&id=63686&format=png&color=000000" width={40} />
                 <div data-v-631327fb="" className="item-info">
                   <span data-v-631327fb="" className="title">
                     {t("login password")}
@@ -310,19 +290,7 @@ const SecurityCenter = ({ open, setOpen }: Props) => {
             </div>
             <div data-v-631327fb="" className="security-item" onClick={() => setOpenChange("pass_payment")}>
               <div data-v-631327fb="" className="item-left">
-                <svg
-                  data-v-631327fb=""
-                  className="inline-block security-icon"
-                  viewBox="0 0 24 24"
-                  width="1.2em"
-                  height="1.2em"
-                  style={{ color: "rgb(7, 193, 96)" }}
-                >
-                  <path
-                    fill="currentColor"
-                    d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12c5.16-1.26 9-6.45 9-12V5zm0 6c1.4 0 2.8 1.1 2.8 2.5V11c.6 0 1.2.6 1.2 1.3v3.5c0 .6-.6 1.2-1.3 1.2H9.2c-.6 0-1.2-.6-1.2-1.3v-3.5c0-.6.6-1.2 1.2-1.2V9.5C9.2 8.1 10.6 7 12 7m0 1.2c-.8 0-1.5.5-1.5 1.3V11h3V9.5c0-.8-.7-1.3-1.5-1.3"
-                  />
-                </svg>
+                <img src="https://img.icons8.com/?size=100&id=12324&format=png&color=000000" width={40} />
                 <div data-v-631327fb="" className="item-info">
                   <span data-v-631327fb="" className="title">
                     {t("Payment password")}
@@ -339,19 +307,7 @@ const SecurityCenter = ({ open, setOpen }: Props) => {
             </div>
             <div data-v-631327fb="" className="security-item" onClick={() => setOpenLang(true)}>
               <div data-v-631327fb="" className="item-left">
-                <svg
-                  data-v-631327fb=""
-                  className="inline-block security-icon"
-                  viewBox="0 0 24 24"
-                  width="1.2em"
-                  height="1.2em"
-                  style={{ color: "rgb(7, 193, 96)" }}
-                >
-                  <path
-                    fill="currentColor"
-                    d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12c5.16-1.26 9-6.45 9-12V5zm0 6c1.4 0 2.8 1.1 2.8 2.5V11c.6 0 1.2.6 1.2 1.3v3.5c0 .6-.6 1.2-1.3 1.2H9.2c-.6 0-1.2-.6-1.2-1.3v-3.5c0-.6.6-1.2 1.2-1.2V9.5C9.2 8.1 10.6 7 12 7m0 1.2c-.8 0-1.5.5-1.5 1.3V11h3V9.5c0-.8-.7-1.3-1.5-1.3"
-                  />
-                </svg>
+                <img src="https://img.icons8.com/?size=100&id=KniCOB9YDHbU&format=png&color=000000" width={40} />
                 <div data-v-631327fb="" className="item-info">
                   <span data-v-631327fb="" className="title">
                     {t("Ngôn ngữ")}

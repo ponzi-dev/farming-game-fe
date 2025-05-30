@@ -8,8 +8,6 @@ import { useTranslation } from "react-i18next";
 import requestService from "api/request";
 import { useAuthApp } from "store/useAuthApp";
 import { socket } from "lib/socket";
-import LuckyMoney from "pages/activity/components/LuckyMoney";
-import Agency from "pages/vip/Agency";
 import VipFarmReward from "components/ui/VipFarmReward";
 import ModalBase from "components/elements/ModalBase";
 import Activities from "components/ui/Activities";
@@ -23,6 +21,8 @@ import Treasure from "pages/activity/Mines";
 import { useStoreFarm } from "store/useStoreFarm";
 import UnlockLand from "components/ui/UnlockLand";
 import Ranking from "components/ui/Ranking";
+import BoxChat from "components/ui/chat";
+import clsx from "clsx";
 
 function App() {
   const { loading, handleSetConfig, handleSetEvents, configApp, handleToggleModal, openModal } = useGlobalAppStore()
@@ -162,7 +162,9 @@ function App() {
           type: "",
           title: ""
         })}
-        className={"bg_custom_drawer"}
+        className={clsx("bg_custom_drawer", {
+          'custom_chat': openModal.name === 'chat'
+        })}
         title={openModal?.title}
         closeIcon={
           <img src={close_icon} width={50} />
@@ -179,6 +181,9 @@ function App() {
         }
         {
           openModal.name === 'profile' && <Profile />
+        }
+        {
+          openModal.name === 'chat' && <BoxChat />
         }
       </Drawer>
 

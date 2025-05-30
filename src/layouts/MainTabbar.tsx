@@ -79,7 +79,7 @@ const TabBar = () => {
 
       <Drawer
 
-        className='modal-confirm-buy'
+        className='modal-confirm-buy bg_custom_drawer'
         placement={breakpoint === 'mobile' ? 'bottom' : "left"}
         height={"auto"}
         closable={false}
@@ -121,7 +121,7 @@ const TabBar = () => {
 
       <Drawer
 
-        className='modal-confirm-buy'
+        className='modal-confirm-buy bg_custom_drawer'
         placement={breakpoint === 'mobile' ? 'bottom' : "left"}
         height={"auto"}
         closable={false}

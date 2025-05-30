@@ -123,7 +123,7 @@ const Deposit = () => {
                       type="text"
                       inputMode="decimal"
                       id="van-field-1-input"
-                      className="van-field__control van-field__control--right placeholder:text-[#cccc] text-left"
+                      className="p-3.5 van-field__control van-field__control--right placeholder:text-[#cccc] text-left"
                       placeholder=""
 
                     />
@@ -142,7 +142,10 @@ const Deposit = () => {
                 </div>
                 {/**/}
                 {/**/}
-                = {formatNumber(amount * configApp?.rateUsd || 0)} vnđ
+                {
+                  paymentMethod === 'banking' && <> = {formatNumber(amount * configApp?.rateUsd || 0)} vnđ</>
+                }
+
               </div>
             </div>
             <div data-v-0fbd6467="" className="channel-section">
@@ -155,7 +158,9 @@ const Deposit = () => {
                 })}
                   onClick={() => setPaymentMethod('crypto')}
                 >
-                  <img src="https://img.icons8.com/?size=100&id=XDum8M4mrAZQ&format=png&color=000000" width={40} />
+                  <span className='mr-3'>
+                    <img src="https://bitbill.oss-accelerate.aliyuncs.com/pics/coins/bsc.svg" width={40} />
+                  </span>
                   <span data-v-0fbd6467="" className='ml-4'>
                     {t("Giao dịch tiền mã hoá")}
                   </span>

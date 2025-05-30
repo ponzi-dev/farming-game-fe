@@ -1,7 +1,30 @@
+import requestService from "api/request"
 import { useGlobalAppStore } from "store/useGlobalApp"
 
 const UnlockLand = () => {
-  const { handleToggleModal } = useGlobalAppStore()
+  const { handleToggleModal, handleCallbackUser, handleLoading, loading } = useGlobalAppStore()
+
+  const handleUnlockLand = async () => {
+    if (loading) return
+
+    handleLoading(true)
+    try {
+      const res = await requestService.post('/tickets/unlock-land')
+      if (res && res.data) {
+        handleCallbackUser()
+        handleToggleModal({
+          name: "",
+          type: "",
+          title: ""
+        })
+      }
+    } catch (error) {
+      console.log('====================================');
+      console.log(error);
+      console.log('====================================');
+    }
+    handleLoading(false)
+  }
   return (
     <div className='text-[12px] text-[#000]  z-50 relative h-[250px] flex flex-col justify-center'>
       <p className="text-center text-black text-[15px]">
@@ -10,7 +33,9 @@ const UnlockLand = () => {
       </p>
       <div className="mt-4 flex justify-center gap-4">
         <div className="mt-4 flex justify-center gap-4">
-          <button className="bg-green-500 hover:bg-green-600 text-white px-5 py-2 rounded-lg text-[15px] font-semibold shadow">
+          <button
+            onClick={handleUnlockLand}
+            className="bg-green-500 hover:bg-green-600 text-white px-5 py-2 rounded-lg text-[15px] font-semibold shadow">
             Mở khóa
           </button>
           <button

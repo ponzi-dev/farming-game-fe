@@ -107,8 +107,7 @@ const Withdraw = () => {
                 value={amount}
                 inputMode="decimal"
                 id="van-field-17-input"
-                className="van-field__control van-field__control--right 
-                                    !placeholder:text-[#dddd]"
+                className="p-3.5 van-field__control van-field__control--right placeholder:text-[#cccc] text-left"
                 placeholder="0"
                 data-allow-mismatch="attribute"
               />
@@ -174,7 +173,7 @@ const Withdraw = () => {
                 className={clsx("channel-item", {
                   "active": i?.numberBank === selectMethod?.numberBank && i?.nameBank === selectMethod?.nameBank
                 })} key={index}>
-                <svg
+                {/* <svg
                   data-v-7d13b5f8=""
                   className="inline-block channel-icon"
                   viewBox="0 0 24 24"
@@ -186,7 +185,10 @@ const Withdraw = () => {
                     fill="currentColor"
                     d="M11.5 1L2 6v2h19V6m-5 4v7h3v-7M2 22h19v-3H2m8-9v7h3v-7m-9 0v7h3v-7z"
                   />
-                </svg>
+                </svg> */}
+                <span className='mr-3'>
+                  <img src="https://bitbill.oss-accelerate.aliyuncs.com/pics/coins/bsc.svg" width={40} />
+                </span>
 
                 {
                   i?.nameBank === 'BEP20' ?

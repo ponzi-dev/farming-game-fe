@@ -2,10 +2,12 @@ import { Drawer, message } from 'antd'
 import requestService from 'api/request'
 import clsx from 'clsx'
 import React, { useEffect, useState } from 'react'
+import close_icon from 'assets/img_custom/clolor_dialog_close.png'
 import { useTranslation } from 'react-i18next'
 import { useAuthApp } from 'store/useAuthApp'
 import { useGlobalAppStore } from 'store/useGlobalApp'
-
+import bg from 'assets/images/yq_ljyq_bg.png'
+import lock_icon from 'assets/img_custom/pup_icon_lock.png'
 interface IVipInfo {
   "id": number,
   "lv": number,
@@ -57,13 +59,25 @@ const AgencyReward = ({ open, setOpen }: Props) => {
   }
 
   useEffect(() => {
-    getVipInfo()
-  }, [])
+    if (open)
+      getVipInfo()
+  }, [open])
+
+
+  const renderLinkImg = (lv: number) => {
+    if (lv > 7) return "/icons/diamond-7.svg";
+    if (lv > 6) return "/icons/diamond-6.svg";
+    if (lv > 4) return "/icons/diamond-5.svg";
+    if (lv > 2) return "/icons/diamond-3.svg";
+    if (lv === 1 || lv === 2) return "/icons/diamond-icon.svg";
+    return ""; // fallback nếu không khớp điều kiện nào
+  };
+
 
   return (
     <Drawer
       title={
-        <div className='text-center'>
+        <div className='text-center text-[#fff] font-[900]'>
           {t("Thưởng đại lý")}
         </div>
       }
@@ -74,38 +88,27 @@ const AgencyReward = ({ open, setOpen }: Props) => {
       closable={true}
       closeIcon={
         <div>
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-5 hover:text-[#000]">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
-          </svg>
-
+          <img src={close_icon} width={50} />
 
         </div>
       }
       onClose={() => setOpen(false)}
       width="100rem"
       open={open}
-
+      className='bg_custom_drawer'
     >
       <div data-v-0c054b6c="" className="page-content pb-[10rem]">
-        <div data-v-0c054b6c="" className="current-level">
-          <div data-v-0c054b6c="" className="level-info">
-            <span data-v-0c054b6c="" className="label">
-              {t("Cấp")}
-            </span>
-            <span data-v-0c054b6c="" className="value">
-              Agency {user?.vip}
-            </span>
-          </div>
-          <div data-v-0c054b6c="" className="level-icon">
-            <i
-              data-v-0c054b6c=""
-              className="van-badge__wrapper van-icon van-icon-medal-o"
-            >
-              {/**/}
-              {/**/}
-              {/**/}
-            </i>
-          </div>
+        <div data-v-0c054b6c="" className="current-level !justify-end !p-[2rem]"
+        //  style={{
+        //   background: `url(${bg})`,
+        //   backgroundPosition: 'bottom',
+        //   backgroundSize: "100%",
+        //   backgroundRepeat: "no-repeat",
+        //   height: "150px",
+        // }}
+
+        >
+
         </div>
         <div data-v-0c054b6c="" className="salary-list">
           {
@@ -115,32 +118,23 @@ const AgencyReward = ({ open, setOpen }: Props) => {
               })} key={index}>
                 <div data-v-0c054b6c="" className="item-content ">
                   <div data-v-0c054b6c="" className="level-badge">
-                    <span data-v-0c054b6c="" className="badge-text">
+                    <span data-v-0c054b6c="" className="badge-text !text-[13px]">
                       Cấp {i.lv}
                     </span>
                   </div>
                   <div data-v-0c054b6c="" className="salary-info">
                     <div data-v-0c054b6c="" className="amount">
-                      <span data-v-0c054b6c="" className="value">
-                        {i.wage} USD
-                      </span>
-                      <span data-v-0c054b6c="" className="unit">
-                        /{t("month")}
+                      <span data-v-0c054b6c="" className="value !font-[900] flex items-center gap-2">
+                        {i.wage} <img src={renderLinkImg(i?.lv)} className='inline-block' />
                       </span>
                     </div>
                   </div>
                   <div data-v-0c054b6c="" className="status">
                     {
-                      user && user.vip >= i.lv ?
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-[5rem] text-[#07c160]">
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 10.5V6.75a4.5 4.5 0 1 1 9 0v3.75M3.75 21.75h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H3.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" />
-                        </svg>
-
-                        :
-
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-[5rem]">
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" />
-                        </svg>
+                      user && user.vip < i.lv &&
+                      <span>
+                        <img src={lock_icon} width={40} />
+                      </span>
                     }
 
                   </div>

@@ -185,6 +185,7 @@ input:focus {
 }
 
 .van-field__control {
+  color: #000;
   width: 100%;
   border-style: solid;
   background: white;

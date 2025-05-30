@@ -28,7 +28,7 @@ const Register = () => {
   const navigate = useNavigate()
   const { register, handleSubmit, watch, control, setValue, formState: { errors } } = useForm<IFormInput>({
     defaultValues: {
-      isCheckPolicy: false
+      isCheckPolicy: true
     }
   });
   const isCheckPolicy = watch('isCheckPolicy')
@@ -44,11 +44,11 @@ const Register = () => {
     if (!isCheckPolicy) return message.error(t("Bạn chưa đồng ý với điều khoản dịch vụ"))
     handleLoading(true)
     try {
-      const token = await getRecaptchaToken();
+      // const token = await getRecaptchaToken();
       const res = await requestService.post('/auth/register', {
         data: {
           ...data,
-          recaptchaToken: token
+          recaptchaToken: ""
         }
       })
 
@@ -99,31 +99,31 @@ const Register = () => {
       <form data-v-fed939fe="" className={clsx("register-form")} onSubmit={handleSubmit(onSubmit)}>
         <div data-v-fed939fe="" className="form-item">
           <div data-v-fed939fe="" className="van-cell van-field">
-            <div className="van-field__left-icon">
+            {/* <div className="van-field__left-icon">
               <div data-v-fed939fe="" className="country-code">
                 +84
               </div>
-            </div>
+            </div> */}
             {/**/}
             <div className="van-cell__value van-field__value">
               <div className="van-field__body">
                 <input
-                  type="tel"
-                  inputMode="numeric"
-                  id="van-field-52-input"
-                  className="van-field__control"
-                  placeholder={t("auth.phone")}
-                  autoComplete="tel"
-                  data-allow-mismatch="attribute"
+                  type="text"
+                  inputMode="text" // vì là username chứ không phải số
+                  id="van-field-5-input"
+                  maxLength={20}
+                  minLength={6}
                   {...register("phone", {
-                    required: t("auth.phone_required"),
+                    required: t("auth.username_required"),
                     pattern: {
-                      value: /^(?:\d{9})$|^(?:\d{3}[-\s]?\d{3}[-\s]?\d{3,4})$|^(?:\(\d{3}\)[-\s]?\d{3}[-\s]?\d{3,4})$/,
-                      message: t("auth.invalid_phone_number_format")
-                    }
-
-
+                      value: /^[a-z0-9_]{6,20}$/,
+                      message: t("auth.invalid_username_format"),
+                    },
                   })}
+                  className="van-field__control van-field__control !border-[0px] p-4"
+                  placeholder={t("Nhập tên tài khoản")}
+                  autoComplete="off"
+                  data-allow-mismatch="attribute"
                 />
 
               </div>
@@ -151,7 +151,7 @@ const Register = () => {
                 <input
                   type={shopPasss ? "text" : "password"}
                   id="van-field-53-input"
-                  className="van-field__control"
+                  className="van-field__control van-field__control !border-[0px] p-4"
                   placeholder={t("auth.password")}
                   autoComplete="new-password"
                   data-allow-mismatch="attribute"
@@ -202,7 +202,7 @@ const Register = () => {
                   type={shopPasss ? "text" : "password"}
                   inputMode="numeric"
                   id="van-field-54-input"
-                  className="van-field__control"
+                  className="van-field__control van-field__control !border-[0px] p-4"
                   placeholder={t("auth.payment_password")}
                   autoComplete="new-password"
                   data-allow-mismatch="attribute"
@@ -242,7 +242,7 @@ const Register = () => {
                 <input
                   type="text"
                   id="van-field-55-input"
-                  className="van-field__control"
+                  className="van-field__control van-field__control !border-[0px] p-4"
                   placeholder={t("auth.inviteCode")}
                   data-allow-mismatch="attribute"
                   {...register("inviteCode")}
@@ -271,7 +271,7 @@ const Register = () => {
             aria-checked="false"
           >
             <div
-              className=" w-[30px] h-[30px]  cursor-pointer rounded-sm mt-1 flex justify-center items-center border-[#733e39] border-[2px]" style={{ fontSize: 16 }}
+              className=" w-[30px] h-[25px]  cursor-pointer rounded-sm mt-1 flex justify-center items-center border-[#733e39] border-[2px]" style={{ fontSize: 16 }}
               onClick={() => setValue('isCheckPolicy', !isCheckPolicy)}
             >
               {
@@ -304,7 +304,7 @@ const Register = () => {
           >
             <div className="van-button__content">
               {/**/}
-              <span className="van-button__text">
+              <span className="van-button__text !font-[700]">
                 {t("auth.regis")}
               </span>
               {/**/}

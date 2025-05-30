@@ -12,7 +12,7 @@ const MemberItem = (props: any) => {
           <div data-v-d324c76e className="name-row">
             <div data-v-d324c76e>
               <div className="ph" data-v-d324c76e>
-                {hidePhoneNumber(props?.phone)}
+                {props?.phone}
               </div>
             </div>
             <div data-v-d324c76e className="time">

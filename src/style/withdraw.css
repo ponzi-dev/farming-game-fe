@@ -300,11 +300,11 @@
   transform: scale(0.98);
 }
 
-[data-v-7d13b5f8] .van-field__control {
+/* [data-v-7d13b5f8] .van-field__control {
   border-radius: 2.66667rem;
   border: 0.1rem solid #bebebe;
   padding: 2.66667rem;
-}
+} */
 
 .channel-list .channel-item[data-v-7d13b5f8] {
   display: flex;

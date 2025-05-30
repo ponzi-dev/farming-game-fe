@@ -130,28 +130,10 @@
 body::-webkit-scrollbar {
   display: none;
 }
-.ant-drawer-body {
-  padding: 2rem !important;
-}
 
 .flip-hourglass {
   animation: flip 2s infinite;
   transform-style: preserve-3d;
-}
-.ant-notification {
-  z-index: 9999999 !important;
-}
-
-@keyframes flip {
-  0% {
-    transform: rotateX(0deg);
-  }
-  50% {
-    transform: rotateX(180deg);
-  }
-  100% {
-    transform: rotateX(360deg);
-  }
 }
 
 @import url("./layout.css");
@@ -174,39 +156,11 @@ body::-webkit-scrollbar {
 @import url("./lucky-draw.css");
 @import url("./treasure.css");
 @import url("./custom-antd.css");
+@import url("./box-chat.css");
+
 body {
   font-size: 3rem;
   font-family: "PixeloidSans", sans-serif !important;
-}
-
-.ant-modal,
-.ant-drawer {
-  font-family: "PixeloidSans", sans-serif;
-}
-
-.bg_custom_drawer.ant-drawer-content {
-  background: url("../assets/img_custom/color_launcher_bg.png") !important;
-  background-size: cover !important;
-  background-repeat: no-repeat !important;
-  background-position: center;
-}
-.ant-drawer-header {
-  border-bottom: none !important;
-}
-
-.ant-drawer-body::-webkit-scrollbar {
-  display: none;
-}
-.modal-base-custom .ant-modal-content {
-  background-color: transparent !important;
-  background-clip: unset !important;
-  box-shadow: unset !important;
-  border-radius: 0 !important;
-  position: relative;
-}
-
-.modal-base-custom .ant-modal-body {
-  position: relative;
 }
 
 #crisp-chatbox .cc-1m2mf {
@@ -214,10 +168,6 @@ body {
 }
 .no-scollbar::-webkit-scrollbar {
   display: none;
-}
-.ant-drawer-content.modal-confirm-buy {
-  border-top-left-radius: 4.26667rem;
-  border-top-right-radius: 4.26667rem;
 }
 
 .modal-confirm-buy .buy-btn {
@@ -234,42 +184,8 @@ body {
   color: var(--color-60);
 }
 
-.tab-record .ant-tabs-nav-wrap .ant-tabs-nav-list {
-  width: 100%;
-  justify-content: center;
-  gap: 8rem;
-}
-
-.tab-record .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
-  color: #000;
-  font-weight: 700;
-}
-
-.tab-record .ant-tabs-ink-bar {
-  background: var(--primary-gradient);
-}
-
-.pop-up-welcome .ant-modal-content {
-  padding: 0;
-  border-radius: 12rem;
-  background-color: transparent;
-}
-
-.pop-up-welcome .ant-modal-body {
-  background: transparent;
-}
-
-.pop-up-welcome .ant-modal-close {
-  top: 10rem;
-  color: #000;
-}
-
 .animation-bounceCard {
   animation: bounceCard 1.7s ease-in-out infinite;
-}
-
-.draw-winner .ant-modal-content {
-  background: unset;
 }
 
 .tab-bar {
@@ -384,38 +300,7 @@ body {
     margin: auto;
   }
 }
-@keyframes bounceCard {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-1rem);
-  }
-}
 
-.ant-tabs-tab-btn {
-  color: #673832 !important;
-  font-size: 15px;
-}
-.ant-tabs .ant-tabs-ink-bar {
-  background: #673832;
-}
-
-.ant-tabs-top > .ant-tabs-nav::before {
-  border-bottom: none;
-}
-.ant-notification-notice-wrapper {
-  background: none !important;
-  box-shadow: none !important;
-  border-style: solid;
-  padding: 0px;
-  image-rendering: pixelated;
-  border-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAJAgMAAACd/+6DAAAADFBMVEUAAADq1KomK0TkpnJgUoxyAAAAAXRSTlMAQObYZgAAABlJREFUCNdjAAGuFQwM+v8YGFTDkDFYHAQAV1UEfgVn+mwAAAAASUVORK5CYII=)
-    4 fill / 1 / 0 stretch;
-  outline: none;
-  border-width: 10px;
-}
 .lixi-event .ant-modal-content {
   background-color: unset;
   box-shadow: none;
@@ -439,11 +324,19 @@ body {
 .animal-move {
   animation: moveNatural 2s infinite ease-in-out;
 }
-
-.ant-progress .ant-progress-bg {
-  height: 14px !important;
+.shake {
+  animation: shake 0.5s;
+  animation-iteration-count: 3;
 }
 
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 @keyframes moveNatural {
   0% {
     transform: translate(0, 0);
@@ -487,5 +380,25 @@ body {
   }
   50% {
     left: -20px;
+  }
+}
+@keyframes flip {
+  0% {
+    transform: rotateX(0deg);
+  }
+  50% {
+    transform: rotateX(180deg);
+  }
+  100% {
+    transform: rotateX(360deg);
+  }
+}
+@keyframes bounceCard {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-1rem);
   }
 }
