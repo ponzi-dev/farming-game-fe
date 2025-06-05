@@ -28,7 +28,7 @@
   padding: 8px;
   position: absolute;
   width: 100%;
-  background-color: rgb(7, 18, 58);
+  border: 1px solid;
 }
 
 .mine-box-front img {

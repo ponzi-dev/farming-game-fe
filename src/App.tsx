@@ -23,6 +23,7 @@ import UnlockLand from "components/ui/UnlockLand";
 import Ranking from "components/ui/Ranking";
 import BoxChat from "components/ui/chat";
 import clsx from "clsx";
+import GuideInvest from "components/ui/home/GuideInvest";
 
 function App() {
   const { loading, handleSetConfig, handleSetEvents, configApp, handleToggleModal, openModal } = useGlobalAppStore()
@@ -213,6 +214,9 @@ function App() {
         }
         {
           openModal.name === 'ranking' && <Ranking />
+        }
+        {
+          openModal.name === 'guide' && <GuideInvest />
         }
       </ModalBase>
 

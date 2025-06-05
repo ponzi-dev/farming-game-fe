@@ -361,7 +361,7 @@ button.recBtn {
   margin-right: 1.333333rem;
 }
 
-@media (max-width: 678px) {
+@media (max-width: 992px) {
   .rotatebox .drawbox[data-v-dd46357c] {
     width: 72.33333vw;
     height: 70.8vw;

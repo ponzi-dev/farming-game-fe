@@ -50,7 +50,7 @@ const LeftSidebar = () => {
     <>
       {
         user &&
-        <div className="fixed z-[999] top-[13%] sm:top-[15%] left-[10px] sm:left-[18%] md:left-[20%] lg:left-[27%] cursor-pointer">
+        <div className="fixed z-[999] top-[13%] sm:top-[15%] left-[10px] sm:left-[20%] lg:left-[26%] xl:left-[31%] cursor-pointer">
           <div className='flex flex-col gap-2 '>
             {
               user.totalDep === 0 &&

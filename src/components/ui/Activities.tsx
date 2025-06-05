@@ -1,11 +1,12 @@
 import ButtonImage from 'components/elements/ButtonCustom';
 import bg_btn from 'assets/img_custom/home_withdraw_btn_bg_img.png'
 import ListModal, { ListItem } from 'components/elements/ListModal';
-import j120 from 'assets/images/j120.webp'
+import j120 from 'assets/images/boom_v2 copy.png'
 import luckydraw from 'assets/images/interactiveadvertising_task4.png'
-import activity1 from 'assets/images/call.png'
+import activity1 from 'assets/images/home_nav_icon_sign.png'
 import { useTranslation } from 'react-i18next';
 import { useGlobalAppStore } from 'store/useGlobalApp';
+
 const Activities = () => {
   const { t } = useTranslation()
   const { handleToggleModal } = useGlobalAppStore()
@@ -41,7 +42,7 @@ const Activities = () => {
             className="w-[50px] h-[50px] mr-2.5 bg-center bg-no-repeat bg-cover flex justify-center items-center"
             style={{ backgroundImage: `url(${''})` }}
           >
-            <img src={luckydraw} alt="loteryIcon" className="object-cover" />
+            <img src={"https://img.icons8.com/?size=100&id=lCQ1YNBkdOcR&format=png&color=000000"} alt="loteryIcon" className="object-cover" />
           </div>
           <div className="flex-1 text-[#ffff] text-[12px] text-left  font-bold max-w-[150px]">
             {t("Vòng xoay may mắn")}

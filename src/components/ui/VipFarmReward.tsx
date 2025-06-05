@@ -55,10 +55,10 @@ const VipFarmReward = () => {
       </div>
       <div data-v-0c054b6c="" className="salary-list">
         {
-          arrayVip?.map((i: any) => (
+          arrayVip?.map((i: any, idx: number) => (
             <div data-v-0c054b6c="" className={clsx("salary-item ", {
               "active": user && user.vip >= 0
-            })} >
+            })} key={idx} >
               <div data-v-0c054b6c="" className="item-content !justify-between ">
                 <div data-v-0c054b6c="" className="level-badge !bg-none !shadow-none !w-[17rem]">
                   <span data-v-0c054b6c="" className="badge-text flex items-center gap-4 !text-[#aaa] !font-[900]">

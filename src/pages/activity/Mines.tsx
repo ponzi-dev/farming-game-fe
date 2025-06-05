@@ -1,16 +1,12 @@
 import { message, Modal } from 'antd'
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useNavigate } from 'react-router-dom'
 import { useAuthApp } from 'store/useAuthApp'
-import rw3 from 'assets/icons/duck.png'
-import rw2 from 'assets/images/boom_v2.png'
 import requestService from 'api/request'
 import { useGlobalAppStore } from 'store/useGlobalApp'
-import dolar from 'assets/images/dollar.png'
 import clsx from 'clsx'
 import RandomReward from './components/RandomReward'
-import banner from 'assets/images/banner3.png'
+import hom_adve from 'assets/images/home_advertising_tips_icon.png'
 import box from 'assets/images/guess_btn_bg.png'
 const Treasure = () => {
 
@@ -86,24 +82,18 @@ const Treasure = () => {
   }, [itemWinner]);  // Chạy lại khi itemWinner thay đổi
 
 
-  const handlePostGift = async () => {
-    handleLoading(true)
-    try {
-      const res = await requestService.post('/tickets/gift-duck')
-
-      if (res && res.data) {
-        handleCallbackUser()
-        setOpenModalTicker(false)
-      }
-    } catch (error: any) {
-      message.error(error?.response?.data?.message)
-    }
-    handleLoading(false)
-  }
 
   return (
     <div className='  '>
-      <div className="game--card">
+      <div className="game--card relative z-10 p-[3rem]">
+        <div className='mb-2 flex justify-between items-center'>
+          <div>
+            Lượt quay : <span>{user?.mineNum || 0}</span>
+          </div>
+          <div>
+            <img src={hom_adve} width={20} className='object-cover cursor-pointer' />
+          </div>
+        </div>
         <div className="mine-box-wrapper" >
           {Array.from({ length: 9 }).map((_, index) => (
             <div key={index} className="mine-box mineBox gold-box " id={`mine${index + 1}`}

@@ -16,7 +16,7 @@ const TabBar = () => {
   const [openConfirm, setOpenConfirm] = useState<any>(false)
   const [showInfo, setShowInfo] = useState(false)
   const [investSelected, setInvestSelected] = useState<any>(null)
-  const { loading, handleLoading, handleCallbackUser } = useGlobalAppStore()
+  const { loading, handleLoading, handleCallbackUser, handleToggleModal } = useGlobalAppStore()
   const { t } = useTranslation()
 
   const handleBuyTicket = async (ticketId: string) => {
@@ -53,7 +53,13 @@ const TabBar = () => {
     <div className="border-box  z-[999] bg-[#c28569]  fixed bottom-[10px] left-1/2 translate-x-[-50%] max-w-[350px]  w-full">
       <div className="border-box flex justify-between items-center relative">
 
-        <div className="absolute right-[-15px] top-[-15px] cursor-pointer">
+        <div className="absolute right-[-15px] top-[-15px] cursor-pointer"
+          onClick={() => handleToggleModal({
+            name: "guide",
+            title: "GUIDE",
+            type: 'modal'
+          })}
+        >
           <img src={hom_adve} width={25} className='object-cover' />
         </div>
         {

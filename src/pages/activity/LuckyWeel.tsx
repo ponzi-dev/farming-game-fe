@@ -9,10 +9,8 @@ import requestService from "api/request"
 import { useState } from "react"
 import { useAuthApp } from "store/useAuthApp"
 import { useGlobalAppStore } from "store/useGlobalApp"
-import { formatNumber } from "lib/helpers"
-import ques from 'assets/images/home_advertising_tips_icon.png'
 import actice_bg from 'assets/images/active.png'
-import close_icon from 'assets/images/home_dialog_close.png'
+import hom_adve from 'assets/images/home_advertising_tips_icon.png'
 const dolar = '/icons/diamond-icon.svg'
 const dolar1 = '/icons/diamond-3.svg'
 const dolar2 = '/icons/diamond-5.svg'
@@ -105,66 +103,15 @@ const LuckyWeel = () => {
   ];
 
   return (
-    <div className='' >
-      {/* <div className="absolute top-3 left-2 cursor-pointer z-[999]" >
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-7 text-[#fff]">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
-        </svg>
-      </div> */}
-
-      {/* <div className="absolute top-4 right-2 cursor-pointer" onClick={() => setOpenInfo(true)}>
-        <img src={ques} width={35} />
-      </div> */}
-      {/* <Modal
-        closeIcon={<img src={close_icon} />}
-        open={openInfo} onCancel={() => setOpenInfo(false)} centered footer={false} width={300}>
-        <h1 className="text-center font-bold text-[16px] mb-4">
-          {t("Thưởng đặt biệt")}
-        </h1>
+    <div className='relative z-10' >
+      <div className='mb-2 flex justify-between items-center'>
         <div>
-          <img src={process.env.REACT_APP_BASE_URL + "/uploads/vip0.png"} width={250} className="m-auto rounded-[30px]" />
-
-          <div data-v-cde322bf="" className="nft-info p-2">
-            <div data-v-cde322bf="" className="text-[#000] text-[4rem] font-[600]">
-              {configApp?.duck_Sticker?.name}
-            </div>
-
-            <div data-v-cde322bf="" className="flex justify-between">
-              <div data-v-cde322bf="" className="font-[600]">
-                {t("home.daily_income")}
-              </div>
-
-              <div data-v-cde322bf="" className="ml-2">
-                +{configApp?.duck_Sticker?.incomePerDay}$
-              </div>
-            </div>
-            <div data-v-cde322bf="" className="flex justify-between">
-              <div data-v-cde322bf="" className="font-[600]">
-                {t("Số ngày thu nhập")}
-              </div>
-              <div data-v-cde322bf="" className="value ml-2">
-                {configApp?.duck_Sticker?.earningDay}
-              </div>
-            </div>
-
-
-          </div>
-
+          Lượt quay : <span>{user?.drawNum || 0}</span>
         </div>
-      </Modal> */}
-      {/* <Modal width={350} open={openDrawMoney} footer={true} centered onCancel={() => setOpenDrawMoney(false)}>
-        <div className="p-3">
-          <h3 className="font-[900] text-center my-[5rem]">
-            {t("Thêm một lượt quay với $0.2 nhé?")}
-          </h3>
-          <div style={{ textAlign: "center" }} className="mt-3">
-            <button className="recBtn" onClick={() => handleLuckyWell(true)}>
-              OK
-            </button>
-          </div>
+        <div>
+          <img src={hom_adve} width={20} className='object-cover cursor-pointer' />
         </div>
-
-      </Modal> */}
+      </div>
       <div className="rotatebox " data-v-dd46357c="">
         <i
           className="van-badge__wrapper van-icon van-icon-arrow-left lefticon"

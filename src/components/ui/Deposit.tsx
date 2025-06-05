@@ -60,7 +60,7 @@ const Deposit = () => {
           amount,
           fiatAmount: amount * configApp?.rateUsd || 26000,
           paymentMethod,
-          note: "MP" + Date.now(),
+          note: paymentMethod === 'crypto' ? "Nạp qua mạng BEP20" : "",
           // recaptchaToken: token
         }
       })
@@ -72,10 +72,15 @@ const Deposit = () => {
       console.log('====================================');
       console.log(error);
       console.log('====================================');
-      message.error(error?.response?.data?.message)
+      notification.error({
+        message: error?.response?.data?.message,
+        duration: 3
+      })
     }
     handleLoading(false)
   }
+
+
   return (
     <>
       {
@@ -278,7 +283,7 @@ const Deposit = () => {
           </>
           :
           <div className='px-[4rem]' >
-            <Countdown date={new Date(resultDeposit?.createdAt)?.getTime() + 1000 * 60 * 30}
+            <Countdown date={new Date(resultDeposit?.createdAt)?.getTime() + 1000 * 60 * 10}
               renderer={({ days, hours, minutes, seconds, completed }) => {
                 if (completed) {
                   reset()
@@ -294,7 +299,7 @@ const Deposit = () => {
                   <QRCode
                     size={150}
                     style={{ height: "auto", maxWidth: "100%", width: "100%" }}
-                    value={`${configApp?.paymentGateWay?.crypto?.BEP20}`}
+                    value={`${resultDeposit?.walletDeposit}`}
                     viewBox={`0 0 150 150`}
                   />
                   <div className='absolute w-full h-full top-0 left-0 flex justify-center items-center'>
@@ -346,11 +351,11 @@ const Deposit = () => {
                     whiteSpace: 'pre-line',
                     wordBreak: 'break-word'
                   }}>
-                    {configApp?.paymentGateWay?.crypto?.BEP20}
+                    {resultDeposit?.walletDeposit}
                     <div className='size-[4rem]'>
                       <svg
                         onClick={() => {
-                          copyToClipboard(`${configApp?.paymentGateWay?.crypto?.BEP20}`)
+                          copyToClipboard(`${resultDeposit?.walletDeposit}`)
                           message.success("Copied")
                         }}
                         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-[4rem] ml-[5px] cursor-pointer">
@@ -431,12 +436,13 @@ const Deposit = () => {
                   </div>
 
                 </div>
-                <div className='font-bold rem-3'>
-                  Note : <span className='text-red-600'>{t("Để giao dịch được xử lý nhanh chóng, vui lòng điền đầy đủ và chính xác nội dung chuyển khoản theo hướng dẫn")}</span>
-                </div>
+
 
               </>
             }
+            <div className='font-bold rem-3'>
+              Note : <span className='text-red-600'>{t("Để giao dịch được xử lý nhanh chóng, vui lòng điền đầy đủ và chính xác nội dung chuyển khoản theo hướng dẫn")}</span>
+            </div>
             <div className='flex justify-center mt-5'>
               <button className='flex items-center gap-1'
                 onClick={() => reset()}

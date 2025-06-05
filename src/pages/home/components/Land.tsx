@@ -11,6 +11,7 @@ import { useAuthApp } from 'store/useAuthApp';
 import { useGlobalAppStore } from 'store/useGlobalApp';
 import requestService from 'api/request';
 import clsx from 'clsx';
+import { socket } from 'lib/socket';
 interface Props {
   isLock?: boolean;
   isMark?: boolean;
@@ -20,11 +21,14 @@ interface Props {
 
 const Land = ({ isLock, order, isMark, isShowLock }: Props) => {
   const [showIconHarvest, setShowIconHarvest] = useState(true)
+  const { user } = useAuthApp()
   const { handleCallbackUser, handleLoading, handleToggleModal, loading } = useGlobalAppStore()
+  const [loadingharvest, setLoadingHarvest] = useState(false)
   const { t } = useTranslation()
 
   const handleHarvest = async (id: string) => {
     handleLoading(true)
+    setLoadingHarvest(true)
     try {
       // const token = await getRecaptchaToken();
       const res = await requestService.post('/tickets/harvest', {
@@ -34,13 +38,9 @@ const Land = ({ isLock, order, isMark, isShowLock }: Props) => {
         }
       })
       if (res && res.data) {
-        // notification.success({
-        //   message: "Claim success !",
-        //   duration: 3,
-        //   placement: "top"
-        // })
         handleCallbackUser()
-        // socket.emit("fetchOrderDetail", { orderId: id, userId: user?._id });
+        socket.emit("getOrders", { userId: user?._id });
+
       }
 
     } catch (error: any) {
@@ -51,7 +51,7 @@ const Land = ({ isLock, order, isMark, isShowLock }: Props) => {
       })
     } finally {
       handleLoading(false)
-
+      setLoadingHarvest(false)
     }
 
   }
@@ -171,7 +171,7 @@ const Land = ({ isLock, order, isMark, isShowLock }: Props) => {
 
             {/* icon harverst */}
             {
-              showIconHarvest && (Date.now() >= order?.rewardTime || Date.now() >= order?.endTime) && order?.status &&
+              !loadingharvest && showIconHarvest && (Date.now() >= order?.rewardTime || Date.now() >= order?.endTime) && order?.status &&
 
               <div className='absolute top-[-15px] left-1/2 translate-x-[-50%] translate-y-[-50%] z-[9999]'>
                 <div className='relative'
