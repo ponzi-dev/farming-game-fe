@@ -92,6 +92,7 @@ const AgencyReward = ({ open, setOpen }: Props) => {
 
         </div>
       }
+      zIndex={99999}
       onClose={() => setOpen(false)}
       width="100rem"
       open={open}

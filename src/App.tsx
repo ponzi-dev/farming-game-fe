@@ -157,7 +157,7 @@ function App() {
       }
       <Drawer
         width="100rem"
-        zIndex={9999}
+        zIndex={99999}
         open={openModal.type === 'drawer' && !!openModal.name} onClose={() => handleToggleModal({
           name: "",
           type: "",

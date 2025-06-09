@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useTransition } from 'react'
 import botany5 from 'assets/img_custom/public_botany_9.png'
 import bg_avt from 'assets/img_custom/tasks_bg_nums.png'
 import home_txt from 'assets/img_custom/color_task_active_icon_1.png'
@@ -14,13 +14,14 @@ import { useAuthApp } from 'store/useAuthApp'
 import chat_icon from 'assets/img_custom/me_icon_4.png'
 import { socket } from 'lib/socket'
 import { number } from 'framer-motion'
+import { useTranslation } from 'react-i18next'
 const LeftSidebar = () => {
   const [openVipReward, setOpenVipReward] = useState(false)
   const [openEventFirst, setOpenEventFirst] = useState(false)
   const { handleToggleModal, openModal } = useGlobalAppStore()
   const { user } = useAuthApp()
   const [countUnread, setCountUnRead] = useState(0)
-
+  const { t } = useTranslation()
   useEffect(() => {
     const handleUnreadCount = (vl: number) => {
       if (openModal.name === 'chat') return setCountUnRead(0)
@@ -71,7 +72,7 @@ const LeftSidebar = () => {
             <div className="relative mb-2" onClick={() => handleToggleModal({
               name: "ranking",
               type: "modal",
-              title: "Bảng xếp hạng"
+              title: t("Bảng xếp hạng")
             })}>
               <div className="absolute top-[1px] left-[0.5px] w-full h-full flex justify-center items-center" >
                 <img src={rank_icon} width={40} />
@@ -95,7 +96,7 @@ const LeftSidebar = () => {
       animate-bounce
       select-none
       "
-                  title={`${countUnread} tin nhắn chưa đọc`}
+                  title={`${countUnread} ${t("tin nhắn chưa đọc")}`}
                 >
                   {countUnread > 10 ? "10+" : countUnread}
                 </div>
@@ -118,7 +119,7 @@ const LeftSidebar = () => {
         onCancel={() => setOpenEventFirst(false)}
         footer={null} width={400} className='reward-fist' open={openEventFirst} centered>
         <div className='absolute left-1/2 top-[23%] translate-x-[-50%]'>
-          Sự kiện đầu tiên
+          {t("Sự kiện đầu tiên")}
         </div>
         <div className='absolute left-1/2 top-[40%] translate-x-[-50%] max-w-[250px] w-full'>
 
@@ -128,11 +129,10 @@ const LeftSidebar = () => {
               alt="Treasure"
               className="size-[40px] mb-2"
             />
-            <h2 className="text-[15px] font-bold text-orange-700">🎁 Nạp Lần Đầu 🎉</h2>
+            <h2 className="text-[15px] font-bold text-orange-700">🎁 {t('Nạp Lần Đầu')} 🎉</h2>
           </div>
           <p className="text-center text-black text-[12px]">
-            Chỉ cần nạp lần đầu, bạn sẽ được <strong>mở khóa miễn phí 1 chuồng</strong> cho vật nuôi,
-            bắt đầu hành trình mới đầy thú vị!
+            {t("Chỉ cần nạp lần đầu, bạn sẽ được")} <strong>{t("mở khóa miễn phí 1 chuồng")}</strong> {t("cho vật nuôi, bắt đầu hành trình mới đầy thú vị")}!
           </p>
 
           {/* CTA */}
@@ -143,12 +143,12 @@ const LeftSidebar = () => {
                 handleToggleModal({
                   name: "deposit",
                   type: "drawer",
-                  title: "Nạp lần đầu"
+                  title: t("Nạp lần đầu")
                 })
               }}
               className="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition"
             >
-              Nạp ngay
+              {t("Nạp ngay")}
             </button>
           </div>
         </div>

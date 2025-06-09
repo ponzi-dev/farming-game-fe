@@ -16,13 +16,13 @@ const MainHeader = () => {
   const { t } = useTranslation();
   const { user } = useAuthApp()
   return (
-    <div className="fixed top-0 left-0 right-0 z-[100] sm:max-w-[100rem] m-auto flex items-center justify-between p-[3.2rem] bg-transparent">
+    <div className="fixed top-0 left-0 right-0 z-[10000] sm:max-w-[100rem] m-auto flex items-center justify-between p-[3.2rem] bg-transparent">
       <div className='flex gap-2 items-center relative cursor-pointer'
         onClick={() => handleToggleModal({
           name: "profile",
           type: "drawer",
           title: <div className='text-center'>
-            {t("Cá nhân")}
+            Profile
           </div>
         })}
       >

@@ -7,9 +7,11 @@ import vipFarm from 'assets/img_custom/color_invite_reward_vip_icon1.png'
 import service from 'assets/img_custom/my_service_icon_customer.png'
 import game_icon from 'assets/img_custom/color_task_items_icon7.png'
 import { useGlobalAppStore } from 'store/useGlobalApp'
+import { useTransition } from 'react'
+import { useTranslation } from 'react-i18next'
 
 const RightSidebar = () => {
-  const navigate = useNavigate()
+  const { t } = useTranslation()
   const { handleToggleModal } = useGlobalAppStore()
   const { pathname } = useLocation()
   const { user } = useAuthApp()
@@ -25,7 +27,7 @@ const RightSidebar = () => {
           <div className="relative" onClick={() => handleToggleModal({
             type: "modal",
             name: "activities",
-            title: "Hoạt động"
+            title: t("Hoạt động")
           })}>
             <div className="absolute w-full h-full flex justify-center items-center">
               <img src={game_icon} width={40} className='rounded-full' />
@@ -37,7 +39,8 @@ const RightSidebar = () => {
 
           <div className="relative mb-2" onClick={() => handleToggleModal({
             type: "drawer",
-            name: "vipfarm"
+            name: "vipfarm",
+
           })}>
             <div className="absolute w-full h-full flex justify-center items-center" >
               <img src={vipFarm} width={50} />

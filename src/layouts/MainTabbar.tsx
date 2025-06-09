@@ -93,7 +93,7 @@ const TabBar = () => {
         zIndex={9999}
         title={
           <div className='flex justify-between'>
-            <div className='text-center font-[900] text-[3.5rem]'>
+            <div className='text-center font-[900] text-[3.5rem] text-[#fff]'>
               {t("Xác nhận")}
             </div>
             <button className='text-yellow-700 underline text-[3rem] font-[500]'
@@ -109,20 +109,35 @@ const TabBar = () => {
         }
         open={openConfirm}
       >
-        <div className='flex flex-col gap-2 rem-3 my-[20px]'>
-          <h3 className='text-center text-[16px] font-[700]'>{t("Bạn xác nhận thuê trang trại này với giá")}
-            <span className='text-red-600 '> {investSelected?.price}
-              <img src={'/icons/diamond-icon.svg'} width={20} className='inline-block mx-auto ml-1' />
-            </span> {t("trong")}
-            <span className='text-orange-600'> {investSelected?.earningDay} {t("ngày")}</span>  ?</h3>
-        </div>
-        <div className='flex w-full items-center justify-between py-4'>
+        <div className="bg-[#fff9ec]  border border-yellow-300 rounded-[20px] p-4 text-center shadow-md">
+          <h3 className="text-[16px] font-semibold text-[#333] my-5">
+            {t("Bạn xác nhận thuê trang trại này với giá")}
+          </h3>
 
-          <button className='btn-rent w-full'
-            onClick={() => handleBuyTicket(investSelected)}
-            disabled={loading}
-          >{t("Xác nhận")}</button>
+          <div className="text-[20px] my-5  font-bold text-red-600  flex items-center justify-center gap-2">
+            {investSelected?.price}
+            <img src="/icons/diamond-icon.svg" width={20} alt="diamond" />
+          </div>
+
+          <h3 className="text-[16px] font-semibold text-[#333] mb-5">
+            {t("trong")}
+            <span className="text-orange-600 font-bold ml-1">
+              {" "}{investSelected?.earningDay}  {t("ngày")}
+            </span>
+            {" "}?
+          </h3>
+
+          <div className="mt-4 px-5">
+            <button
+              className="w-full h-[40px]  bg-[#8B4513] text-white py-2 rounded-xl text-[16px] font-bold hover:opacity-90 transition"
+              onClick={() => handleBuyTicket(investSelected)}
+              disabled={loading}
+            >
+              {t("Xác nhận")}
+            </button>
+          </div>
         </div>
+
       </Drawer>
 
       <Drawer
@@ -135,9 +150,7 @@ const TabBar = () => {
         zIndex={99999}
         title={
           <div className='flex justify-between'>
-            <div className='text-center font-[900] text-[3.5rem] flex items-center gap-2'>
-
-
+            <div className='text-center font-[900] text-[#fff] text-[3.5rem] flex items-center gap-2'>
               {t("Thông tin trang trại")}
             </div>
             <button className='text-yellow-700 underline text-[3rem] font-[500]'
@@ -151,50 +164,55 @@ const TabBar = () => {
         }
         open={showInfo}
       >
-        <div className='flex items-center justify-between mb-[3rem] text-[16px]'>
-          <h3>{t("Tên trang trại")}</h3>
-          <div className='font-[900]'>
-            {investSelected?.name}
+        <div className="bg-[#fffef0] rounded-[20px] p-5 shadow-lg border border-yellow-200  mx-auto">
+          <div className="space-y-4 text-[16px] text-[#444]">
+            <div className="flex justify-between items-center mb-[15px]">
+              <span>{t("Tên trang trại")}</span>
+              <span className="font-bold text-right">{investSelected?.name}</span>
+            </div>
+
+            <div className="flex justify-between items-center !mb-[15px]">
+              <span>{t("Thời gian thuê")}</span>
+              <span className="font-bold text-right">
+                {investSelected?.earningDay} {t("home.day")}
+              </span>
+            </div>
+
+            <div className="flex justify-between items-center !mb-[10px]">
+              <span>{t("Thu nhập mỗi ngày")}</span>
+              <span className="font-bold text-green-600 flex items-center gap-1">
+                +{investSelected?.incomePerDay} <img src="/icons/diamond-icon.svg" width={18} />
+              </span>
+            </div>
+
+            <div className="flex justify-between items-center !mb-[15px]">
+              <span>{t("Giá thuê")}</span>
+              <span className="font-bold text-red-500 flex items-center gap-1">
+                {investSelected?.price} <img src="/icons/diamond-icon.svg" width={18} />
+              </span>
+            </div>
+
+            <div className="flex justify-between items-center mb-[15px]">
+              <span>{t("Tổng thu nhập")}</span>
+              <span className="font-bold text-blue-500 flex items-center gap-1">
+                ≈ {investSelected?.incomePerDay * investSelected?.earningDay} <img src="/icons/diamond-icon.svg" width={18} />
+              </span>
+            </div>
           </div>
 
-        </div>
-        <div className='flex items-center justify-between mb-[3rem] text-[16px]'>
-          <h3>{t("Thời gian thuê")}</h3>
-          <div className='font-[900]'>
-            {investSelected?.earningDay} {t('home.day')}
+          <div className="mt-6">
+            <button
+              className="w-full h-[50px] bg-[#8B4513] text-white  font-bold py-2 rounded-xl hover:opacity-90 transition"
+              onClick={() => {
+                setShowInfo(false);
+                setOpenConfirm(true);
+              }}
+            >
+              {t("Thuê ngay")}
+            </button>
           </div>
         </div>
-        <div className='flex items-center justify-between mb-[3rem] text-[16px] '>
-          <h3>{t("Thu nhập mỗi ngày")}</h3>
-          <div className='font-[900] flex items-center gap-2'>
-            +{investSelected?.incomePerDay}   <img src={'/icons/diamond-icon.svg'} width={20} />
-          </div>
 
-        </div>
-        <div className='flex items-center justify-between mb-[3rem] text-[16px] '>
-          <h3>{t("Giá thuê")}</h3>
-          <div className='font-[900] flex items-center gap-2'>
-            {investSelected?.price}   <img src={'/icons/diamond-icon.svg'} width={20} />
-          </div>
-
-        </div>
-        <div className='flex items-center justify-between mb-[3rem] text-[16px] '>
-          <h3>{t("Tổng thu nhập")}</h3>
-          <div className='font-[900] flex items-center gap-2'>
-            ≈ {investSelected?.incomePerDay * investSelected?.earningDay}   <img src={'/icons/diamond-icon.svg'} width={20} />
-          </div>
-
-        </div>
-
-
-        <div className='mb-[3rem] text-[16px] '>
-          <button className='btn-rent w-full' onClick={() => {
-            setShowInfo(false)
-            setOpenConfirm(true)
-          }}>
-            {t("Thuê ngay")}
-          </button>
-        </div>
       </Drawer>
     </div>
   );

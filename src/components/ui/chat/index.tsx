@@ -127,7 +127,7 @@ const BoxChat = () => {
                     {new Date(createdAt as Date).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                   </div>
                 </div>
-                <div className="msg-text">
+                <div className="msg-text whitespace-pre-line w-full break-words">
                   {content}
                 </div>
               </div>
@@ -162,7 +162,7 @@ const BoxChat = () => {
                     {new Date(createdAt as Date).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                   </div>
                 </div>
-                <div className="msg-text">
+                <div className="msg-text whitespace-pre-line w-full break-words">
                   {content}
                 </div>
               </div>

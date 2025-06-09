@@ -113,15 +113,15 @@ const Profile = () => {
             </div>
           </div>
           <div data-v-4f0a6390="" className="balance items-end  flex flex-col  gap-1 !font-[900]" style={{ background: "transparent" }}>
-            <div className='relative mb-[-5px]' onClick={() => handleToggleModal({
+            <div className='relative mb-[-5px] min-w-[70px] h-[30px]' onClick={() => handleToggleModal({
               name: "withdraw",
               type: "drawer",
 
             })}>
               <div className='absolute top-0 left-0 w-full h-full flex justify-center items-center'>
-                <p className='text-[11px] font-[700] text-[#fff] mb-[2px] cursor-pointer'>Rút</p>
+                <p className='text-[11px] font-[700] text-[#fff] mb-[2px] cursor-pointer'>{t("rút tiền")}</p>
               </div>
-              <img src={bg_btn_withdraw} width={50} />
+              <img src={bg_btn_withdraw} className='w-full h-full' />
             </div>
             <div className='flex items-center justify-end '>
               <span className='font-[900]'>

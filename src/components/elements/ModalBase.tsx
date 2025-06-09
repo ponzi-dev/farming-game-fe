@@ -22,7 +22,7 @@ const ModalBase = ({
       centered
       open={isModalOpen}
       onCancel={onCancel}
-
+      zIndex={999999}
       footer={null}
       width={400}
       closeIcon={

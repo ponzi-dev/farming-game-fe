@@ -5,38 +5,31 @@ import { useAuthApp } from 'store/useAuthApp'
 import requestService from 'api/request'
 import { useGlobalAppStore } from 'store/useGlobalApp'
 import clsx from 'clsx'
+import j120 from 'assets/images/boom_v2 copy.png'
 import RandomReward from './components/RandomReward'
-import hom_adve from 'assets/images/home_advertising_tips_icon.png'
 import box from 'assets/images/guess_btn_bg.png'
+import LuckyWheelGuide from './components/LuckyWheelGuide'
+import MineGuide from './components/MineGuide'
 const Treasure = () => {
 
   const { t, i18n } = useTranslation()
   const { handleCallbackUser, configApp, handleLoading } = useGlobalAppStore()
   const { user, onSetUser } = useAuthApp()
-  const [openInfo, setOpenInfo] = useState(false)
   const [itemWinner, setItemWinner] = useState<any>(null)
-  const [openModalReward, setOpenModaReward] = useState(false)
+  const [openGuide, setOpenGuide] = useState(false)
   const [isClick, setIsClick] = useState(false)
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
-  const [openModaTicker, setOpenModalTicker] = useState(false)
 
   const rewardItems = [
-    { id: 1, img: "/icons/diamond-icon.svg", label: "$0.1", reward: "0.1" },
-    { id: 2, img: "/icons/diamond-icon.svg", label: "$0.15", reward: "0.15" },
+    { id: 1, img: "/icons/diamond-icon.svg", label: "$0.05", reward: "0.05" },
+    { id: 2, img: "/icons/diamond-icon.svg", label: "$0.1", reward: "0.1" },
     { id: 3, img: "/icons/diamond-icon.svg", label: "$0.2", reward: "0.2" },
     { id: 4, img: "/icons/diamond-3.svg", label: "$0.5", reward: "0.5" },
-    { id: 5, img: "/icons/diamond-3.svg", reward: "x1_duck", label: "+1" },
-    { id: 6, img: "/icons/diamond-5.svg", reward: "x2_duck", label: "+2" },
-    { id: 7, img: "/icons/diamond-5.svg", reward: "x5_duck", label: "+5" },
-    { id: 8, img: "/icons/diamond-6.svg", reward: "Lucky_Clover" },
-    { id: 9, img: "/icons/diamond-7.svg", reward: "Lucky_Clover" },
-
+    { id: 5, img: "/icons/diamond-5.svg", reward: "1", label: "$1" },
+    { id: 6, img: "/icons/diamond-6.svg", reward: "5", label: "$5" },
+    { id: 7, img: j120, reward: "lucky" },
   ];
-  const randomRewardBox = () => {
-    // Chọn một ID ngẫu nhiên trong phạm vi từ 0 đến 9
-    let randomIndex = Math.floor(Math.random() * 10); // ID từ 0 đến 9
-    return randomIndex;
-  };
+
 
 
   const handleMine = async (index: number) => {
@@ -56,9 +49,7 @@ const Treasure = () => {
         setActiveIndex(index)
         setItemWinner(rewardItems[targetIndex])
         handleCallbackUser()
-        // setTimeout(() => {
-        //     setOpenItemWin(true)
-        // }, 1000);
+
       }
     } catch (error: any) {
       message.error(error?.response?.data?.message)
@@ -74,7 +65,7 @@ const Treasure = () => {
       const timeoutId = setTimeout(() => {
         setItemWinner(null);  // Đặt lại itemWinner sau 5 giây
         setIsClick(false);    // Đặt lại trạng thái isClick
-      }, 4000);
+      }, 3000);
 
       // Dọn dẹp (cleanup) khi itemWinner thay đổi hoặc component unmount
       return () => clearTimeout(timeoutId);
@@ -86,12 +77,30 @@ const Treasure = () => {
   return (
     <div className='  '>
       <div className="game--card relative z-10 p-[3rem]">
+        <MineGuide
+          onClose={() => setOpenGuide(false)}
+          open={openGuide}
+        />
         <div className='mb-2 flex justify-between items-center'>
           <div>
-            Lượt quay : <span>{user?.mineNum || 0}</span>
+            {t("Lượt quay")} : <span>{user?.mineNum || 0}</span>
           </div>
-          <div>
-            <img src={hom_adve} width={20} className='object-cover cursor-pointer' />
+          <div
+            style={{
+              fontSize: '2rem',
+              fontWeight: 'bold',
+              color: '#e77e29',
+              textShadow: '2px 2px 4px #c9c2b8',
+              cursor: 'pointer',
+              userSelect: 'none',
+              transform: 'rotate(0deg)',
+              transition: 'transform 0.3s ease-in-out',
+            }}
+            onMouseEnter={e => (e.currentTarget.style.transform = 'rotate(5deg) scale(1.1)')}
+            onMouseLeave={e => (e.currentTarget.style.transform = 'rotate(-5deg)')}
+            onClick={() => setOpenGuide(true)}
+          >
+            {t("Hướng dẫn")}
           </div>
         </div>
         <div className="mine-box-wrapper" >
@@ -106,17 +115,17 @@ const Treasure = () => {
                 index === activeIndex && itemWinner ?
                   <div className="mine-box-wrapper" key={index}>
                     <div className={clsx("mine-box-front", {
-                      "border-[.3rem] border-yellow-500": index === activeIndex
+                      "border-[.3rem] border-yellow-500 glow-yellow ": index === activeIndex
                     })}>
                       <img
                         src={itemWinner?.img}
                         alt="image"
-                        className='animation-bounceCard !w-[6rem] !h-[6rem]'
+                        className='animation-bounceCard !w-[5rem] !h-[5rem]'
 
                       />
                       {
                         itemWinner?.label &&
-                        <div className='text-[3.5rem] text-[#fff] font-[700]'>
+                        <div className='text-[2.5rem] text-[#000] font-[700]'>
                           {itemWinner?.label}
                         </div>
                       }

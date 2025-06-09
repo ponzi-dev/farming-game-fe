@@ -102,3 +102,20 @@
   height: 80px;
   width: calc(100% / 3 - 13px);
 }
+@keyframes glow {
+  0%,
+  100% {
+    box-shadow: 0 0 5px 2px rgba(234, 179, 8, 0.6);
+  }
+  50% {
+    box-shadow: 0 0 12px 4px rgba(234, 179, 8, 1);
+  }
+}
+
+.glow-yellow {
+  animation: glow 1.5s ease-in-out infinite;
+  border-width: 0.3rem !important; /* đảm bảo viền ko bị override */
+  border-color: #fbbf24 !important; /* Tailwind yellow-400 */
+  border-style: solid;
+  border-radius: 0.5rem;
+}

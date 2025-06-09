@@ -1,115 +1,114 @@
-import { useNavigate } from "react-router-dom"
 import rw1 from 'assets/icons/fortune-wheel.png'
 import rw2 from 'assets/images/good-luck.png'
-import rw3 from 'assets/images/farm.png'
 
 import { useTranslation } from "react-i18next"
-import { message, Modal, notification } from "antd"
 import requestService from "api/request"
 import { useState } from "react"
 import { useAuthApp } from "store/useAuthApp"
 import { useGlobalAppStore } from "store/useGlobalApp"
 import actice_bg from 'assets/images/active.png'
-import hom_adve from 'assets/images/home_advertising_tips_icon.png'
+import LuckyWheelGuide from "./components/LuckyWheelGuide"
+
 const dolar = '/icons/diamond-icon.svg'
 const dolar1 = '/icons/diamond-3.svg'
 const dolar2 = '/icons/diamond-5.svg'
 const dolar3 = '/icons/diamond-7.svg'
+
+
+const rewardItems = [
+  { id: 1, img: dolar, label: "$ 0.1", reward: "0.1" },
+  { id: 2, img: dolar2, label: "$ 0.3", reward: "0.3" },
+  { id: 3, img: rw1, reward: "Robot_Part", label: "+2 Turn" },
+  { id: 4, img: dolar1, label: "$ 0.15", reward: "0.15" },
+  { id: 5, img: dolar1, label: "$ 0.2", reward: "0.2" },
+  { id: 6, img: dolar, label: "$ 0.05", reward: "0.05" },
+  { id: 7, img: dolar3, label: "$5", reward: "5" },
+  { id: 8, img: rw2, label: "Good luck", reward: "Lucky_Clover" },
+];
+
 const LuckyWeel = () => {
-  const { user, onSetUser } = useAuthApp()
-  const { handleCallbackUser, configApp } = useGlobalAppStore()
-  // const navigate = useNavigate()
-  const { t } = useTranslation()
+  const { t } = useTranslation();
+  const { user, onSetUser } = useAuthApp();
+  const { handleCallbackUser } = useGlobalAppStore();
+
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [isSpinning, setIsSpinning] = useState(false);
-  const [itemWinner, setItemWinner] = useState<any>(null)
-  const [openDrawMoney, setOpenDrawMoney] = useState(false)
-  const [openInfo, setOpenInfo] = useState(false)
+  const [itemWinner, setItemWinner] = useState<any>(null);
+  const [openGuide, setOpenGuide] = useState(false);
 
-  const handleLuckyWell = async (drawMoney: boolean) => {
-    setItemWinner(null)
-    setOpenDrawMoney(false)
-    if (isSpinning) return;
-    setIsSpinning(true);
-
-    try {
-      const res = await requestService.post("/checkin/draw", {
-        data: {
-          drawMoney
-        }
-      });
-      if (drawMoney && user) {
-        onSetUser({
-          ...user,
-          realBalance: user?.realBalance - 0.2
-        })
-      }
-      if (res && res.data) {
-        const resultReward = res.data.data;
-
-        const targetIndex = rewardItems.findIndex((item) => item.reward === resultReward);
-        if (targetIndex === -1) throw new Error("Reward not found");
-
-        const totalRounds = 3; // số vòng quay đầy đủ
-        const totalSteps = totalRounds * rewardItems.length + targetIndex;
-        let currentIndex = 0;
-
-        const spin = setInterval(() => {
-          setActiveIndex(currentIndex % rewardItems.length);
-          currentIndex++;
-
-          if (currentIndex > totalSteps) {
-            clearInterval(spin);
-            setIsSpinning(false);
-            setItemWinner(rewardItems[targetIndex])
-            handleCallbackUser()
-          }
-        }, getSpinSpeed(currentIndex));
-      }
-
-    } catch (error: any) {
-      console.log('====================================');
-      console.log(error);
-      console.log('====================================');
-      notification.error({
-        message: error?.response?.data?.message || "Something went wrong",
-        duration: 3,
-        placement: 'top'
-      });
-      setIsSpinning(false);
-    }
-  };
-
-
-  // Optional: tạo hiệu ứng chậm dần
   const getSpinSpeed = (step: number) => {
     if (step < 20) return 80;
     if (step < 40) return 100;
     if (step < 60) return 120;
-    return 150; // chậm dần
+    return 150;
   };
 
+  const animateSpin = (targetIndex: number) => {
+    const totalRounds = 3;
+    const totalSteps = totalRounds * rewardItems.length + targetIndex;
+    let currentIndex = 0;
 
+    const spin = setInterval(() => {
+      setActiveIndex(currentIndex % rewardItems.length);
+      currentIndex++;
 
-  const rewardItems = [
-    { id: 1, img: dolar, label: "$0.1", reward: "0.1" },
-    { id: 2, img: dolar2, label: "$0.3", reward: "0.3" },
-    { id: 3, img: rw1, reward: "Robot_Part", label: "+2 Turn" },
-    { id: 4, img: dolar1, label: "$0.15", reward: "0.15" },
-    { id: 5, img: dolar1, label: "$0.2", reward: "0.2" },
-    { id: 6, img: rw3, reward: "Duck_Sticker", label: "+1 Farm" },
-    { id: 7, img: dolar3, label: "$5", reward: "5" },
-    { id: 8, img: rw2, label: "Good luck", reward: "Lucky_Clover" },
-  ];
+      if (currentIndex > totalSteps) {
+        clearInterval(spin);
+        setIsSpinning(false);
+        setItemWinner(rewardItems[targetIndex]);
+        handleCallbackUser();
+      }
+    }, getSpinSpeed(currentIndex));
+  };
+
+  const handleLuckyWell = async (drawMoney: boolean) => {
+    if (isSpinning) return;
+    setIsSpinning(true);
+    setItemWinner(null);
+
+    try {
+      const res = await requestService.post("/checkin/draw", { data: { drawMoney } });
+      const resultReward = res?.data?.data;
+
+      if (drawMoney && user) {
+        onSetUser({ ...user, realBalance: user.realBalance - 0.2 });
+      }
+
+      const targetIndex = rewardItems.findIndex(item => item.reward === resultReward);
+      if (targetIndex === -1) throw new Error("Reward not found");
+
+      animateSpin(targetIndex);
+    } catch (error: any) {
+      console.error(error);
+      setIsSpinning(false);
+    }
+  };
 
   return (
     <div className='relative z-10' >
+      <LuckyWheelGuide open={openGuide} onClose={() => setOpenGuide(false)} />
       <div className='mb-2 flex justify-between items-center'>
         <div>
-          Lượt quay : <span>{user?.drawNum || 0}</span>
+          {t('Lượt quay')} : <span>{user?.drawNum || 0}</span>
         </div>
         <div>
-          <img src={hom_adve} width={20} className='object-cover cursor-pointer' />
+          <div
+            style={{
+              fontSize: '2rem',
+              fontWeight: 'bold',
+              color: '#e77e29',
+              textShadow: '2px 2px 4px #c9c2b8',
+              cursor: 'pointer',
+              userSelect: 'none',
+              transform: 'rotate(0deg)',
+              transition: 'transform 0.3s ease-in-out',
+            }}
+            onMouseEnter={e => (e.currentTarget.style.transform = 'rotate(5deg) scale(1.1)')}
+            onMouseLeave={e => (e.currentTarget.style.transform = 'rotate(-5deg)')}
+            onClick={() => setOpenGuide(true)}
+          >
+            {t("Hướng dẫn")}
+          </div>
         </div>
       </div>
       <div className="rotatebox " data-v-dd46357c="">
@@ -129,17 +128,6 @@ const LuckyWeel = () => {
               {t("Get cash rewords and receive them immediately in you account")}
             </p>
 
-
-
-            {
-              itemWinner?.id == 6 &&
-              <div className="flex justify-center">
-                <img src={"https://api.rich-farmer.online/uploads/vip0.png"} width={175} />
-              </div>
-
-            }
-
-
             {
               itemWinner?.label && <div>
                 <>
@@ -152,12 +140,6 @@ const LuckyWeel = () => {
               </div>
 
             }
-            {/* <div>
-                                <div className="discreate">
-
-                                </div>
-                            </div> */}
-
 
             <div style={{ textAlign: "center" }} className="mt-3">
               <button className="recBtn" onClick={() => setItemWinner(null)}>
@@ -206,9 +188,6 @@ const LuckyWeel = () => {
           <button
 
             className="drawuis" data-v-dd46357c="" id="drawBtn" onClick={() => {
-              if (user && user?.drawNum <= 0) {
-                return setOpenDrawMoney(true)
-              }
               handleLuckyWell(false)
             }}>
             <p data-v-dd46357c="" className="!text-[17px] !font-[900]">
@@ -217,20 +196,6 @@ const LuckyWeel = () => {
           </button>
 
         </div>
-        {/* <div className="text-[3rem] font-[900] text-center my-2">
-          {t("Quay miễn phí")} : {user?.drawNum || 0}
-        </div>
-        <div className="text-[3rem] font-[900] text-center my-2">
-          {t("Số dư")} : {formatNumber(user?.realBalance?.toLocaleString())}
-        </div>
-        <div className="ruleui" data-v-dd46357c="">
-          <p data-v-dd46357c="" className="ml-[70px]">{t("Rule Of Activity")}</p>
-        </div>
-        <div className="currently pb-[100rem]" data-v-dd46357c="">
-          <p className="texti " data-v-dd46357c="">
-            {t("rule_luckydraw")}
-          </p>
-        </div> */}
       </div>
     </div>
 
