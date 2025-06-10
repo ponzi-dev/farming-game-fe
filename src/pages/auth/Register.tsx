@@ -126,7 +126,10 @@ const Register = () => {
                   className="van-field__control van-field__control !border-[0px] p-4"
                   placeholder={t("Nhập tên tài khoản")}
                   autoComplete="off"
-                  data-allow-mismatch="attribute"
+                  onInput={(e) => {
+                    const target = e.target as HTMLInputElement;
+                    target.value = target.value.toLowerCase();
+                  }}
                 />
 
               </div>

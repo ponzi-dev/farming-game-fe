@@ -9,10 +9,12 @@
     "title_regis": "创建新账户",
     "payment_password": "支付密码",
     "payment_password_required": "支付密码不能为空",
-    "inviteCode": "邀请码",
+    "inviteCode": "邀请码（可选）",
     "agree": "同意",
     "policy": "服务条款和隐私政策",
-    "regis": "注册"
+    "regis": "注册",
+    "invalid_username_format": "用户名格式无效"
+
   },
   "tabbar": {
     "home": "首页",

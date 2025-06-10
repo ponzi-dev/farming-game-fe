@@ -40,7 +40,7 @@ export const DrawerLang = ({ openLang, setOpenLang, showLangSelected }: Props) =
 
     <>
       {showLangSelected && (
-        <img src={langOptions[currentLang]?.icon} width={30} />
+        <img src={langOptions[currentLang]?.icon} width={30} onClick={() => setOpenLang(true)} />
       )}
 
       <Drawer

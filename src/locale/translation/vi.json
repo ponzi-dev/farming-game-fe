@@ -9,10 +9,11 @@
     "title_regis": "Tạo tài khoản mới",
     "payment_password": "Mật khẩu thanh toán",
     "payment_password_required": "Mật khẩu thanh toán không để trống",
-    "inviteCode": "Mã mời",
+    "inviteCode": "Mã mời ( không bắt buộc)",
     "agree": "Đồng ý",
     "policy": "Điều khoản dịch vụ và Chính sách bảo mật",
-    "regis": "Đăng ký"
+    "regis": "Đăng ký",
+    "invalid_username_format":"Tên người dùng không đúng định dạng"
   },
   "tabbar": {
     "home": "Trang chủ",

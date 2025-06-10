@@ -9,9 +9,10 @@
     "title_regis": "Create a new account",
     "payment_password": "Payment password",
     "payment_password_required": "Payment password cannot be empty",
-    "inviteCode": "Invitation code",
+    "inviteCode": "Invitation code (optional)",
     "agree": "Agree",
     "policy": "Terms of Service and Privacy Policy",
+    "invalid_username_format": "Invalid username format",
     "regis": "Register"
   },
   "tabbar": {

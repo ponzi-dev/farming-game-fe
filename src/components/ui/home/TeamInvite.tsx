@@ -131,7 +131,7 @@ const TeamInvite = ({ open, setOpen }: Props) => {
                   <div data-v-d324c76e="" className="member-list">
                     {
                       summary?.levelA?.map((i: any, index: number) => (
-                        <MemberItem {...i} />
+                        <MemberItem {...i} key={index} />
                       ))
                     }
                     {
@@ -150,7 +150,7 @@ const TeamInvite = ({ open, setOpen }: Props) => {
                   <div data-v-d324c76e="" className="member-list">
                     {
                       summary?.levelB?.map((i: any, index: number) => (
-                        <MemberItem {...i} />
+                        <MemberItem {...i} key={index} />
                       ))
                     }
 
@@ -170,7 +170,7 @@ const TeamInvite = ({ open, setOpen }: Props) => {
                   <div data-v-d324c76e="" className="member-list">
                     {
                       summary?.levelC?.map((i: any, index: number) => (
-                        <MemberItem {...i} />
+                        <MemberItem {...i} key={index} />
                       ))
                     }
                     {

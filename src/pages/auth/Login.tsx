@@ -1,4 +1,4 @@
-import { message, notification } from 'antd';
+import { notification } from 'antd';
 import requestService from 'api/request';
 import logo from 'assets/images/logo.png'
 import TurnstileCaptcha from 'components/ui/TurnstileCaptcha';
@@ -108,7 +108,10 @@ const Login = () => {
                   className="van-field__control van-field__control !border-[0px] p-4"
                   placeholder={t("Nhập tên tài khoản")}
                   autoComplete="off"
-                  data-allow-mismatch="attribute"
+                  onInput={(e) => {
+                    const target = e.target as HTMLInputElement;
+                    target.value = target.value.toLowerCase();
+                  }}
                 />
 
               </div>
@@ -162,7 +165,7 @@ const Login = () => {
           {t("Bạn chưa có tài khoản")} ? <span className='font-[700] cursor-pointer text-[#733e39]' onClick={() => navigate(r ? `/register?r=${r}` : '/register')}>{t("Đăng kí ngay")}</span>
         </div>
         {/**/}
-        <TurnstileCaptcha onToken={setTurnstileToken} />
+        <TurnstileCaptcha onToken={setTurnstileToken} key="login-turnstile" />
         <div data-v-544b5ac9="" className="submit-btn">
           <button
             data-v-544b5ac9=""

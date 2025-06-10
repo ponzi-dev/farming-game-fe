@@ -10,8 +10,8 @@ const TurnstileCaptcha = ({ onToken }: { onToken: (token: string) => void }) => 
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    //const sitekey = process.env.REACT_APP_SITE_KEY || "0x4AAAAAABglGz0Dr0_PfZB3"; // fallback cho test
-    const sitekey = "0x4AAAAAABglGz0Dr0_PfZB3"
+    const sitekey = process.env.REACT_APP_SITE_KEY || "0x4AAAAAABglGz0Dr0_PfZB3"; // fallback cho test
+
     const renderCaptcha = () => {
       if (window.turnstile && ref.current) {
         const widgetId = window.turnstile.render(ref.current, {
