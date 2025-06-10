@@ -82,7 +82,7 @@
   "Nếu thanh toán của bạn không thành công, vui lòng thử": " Nếu thanh toán của bạn không thành công, vui lòng thử, ",
   "Liên hệ lại với chúng tôi trong vòng 5 phút": "liên hệ lại với chúng tôi trong vòng 5 phút. ",
   "Báo cáo vấn đề cho bộ phận Dịch vụ khách hàng.": "Báo cáo vấn đề cho bộ phận Dịch vụ khách hàng.",
-  "2: Thời gian thanh toán là 5 phút": "2: Thời gian thanh toán là 30 phút",
+  "2: Thời gian thanh toán là 5 phút": "2: Thời gian thanh toán là 10 phút",
   "3: Số tiền gửi tối thiểu là 10$": " 3: Số tiền gửi tối thiểu là 5$",
   "Số Tiền Nạp": "Số Tiền Nạp",
   "Tên Ngân Hàng": "Tên Ngân Hàng",
@@ -96,7 +96,7 @@
   "1Số tiền rút tối thiểu: 2$": "1. Số tiền rút tối thiểu: ${{amount}}",
   "2Thời gian đón hàng ngày": "2. Thời gian giải quyết hàng ngày: 9 giờ sáng đến 17 giờ giờ tối",
   "Giới hạn rút USDT: 50,6USDT-10.000USDT (chỉ hỗ trợ mạng BEP20)": "Giới hạn rút USDT: 5USDT-10.000USDT (chỉ hỗ trợ mạng BEP20)",
-  "meo": "Mẹo ngân hàng: Trước khi rút tiền, hãy kiểm tra kỹ thông tin tài khoản ngân hàng của bạn để đảm bảo tiền rút của bạn đến nơi nhanh chóng. (Nếu số tiền rút bị trả lại do tài khoản bất thường, vui lòng thay đổi/thêm tài khoản rút tiền và gửi lại)",
+  "meo": "Mẹo: Trước khi rút tiền, hãy kiểm tra kỹ thông tin thanh toán của bạn để đảm bảo tiền được chuyển nhanh chóng. (Nếu số tiền rút bị trả lại do tài khoản bất thường, vui lòng thay đổi hoặc thêm tài khoản rút tiền và gửi lại). Điều kiện rút tiền: Đã có lịch sử chăn nuôi trong tuần. Lưu ý: Mỗi ngày bạn chỉ có thể rút tiền một lần.",
   "Add New Account": "Thêm tài khoản mới",
   "holderName": "Tên chủ thẻ",
   "nameBank": "Tên ngân hàng",
@@ -259,6 +259,9 @@
  "Nạp ngay":"Nạp ngay",
  "rút tiền":"Rút tiền",
  "rút":"rút",
- "Cá nhân":"Cá nhân"
+ "Cá nhân":"Cá nhân",
+ "Sự kiện chưa diễn ra":"Sự kiện chưa diễn ra",
+ "Tổng mua":"Tổng mua",
+ "Lợi nhuận":"Lợi nhuận"
  
 }

@@ -2,13 +2,14 @@ import { message, notification } from 'antd';
 import requestService from 'api/request';
 import clsx from 'clsx'
 import { getJSONFromUrl, getRecaptchaToken } from 'lib/helpers';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuthApp } from 'store/useAuthApp';
 import { useGlobalAppStore } from 'store/useGlobalApp';
 import logo from 'assets/images/logo.png'
+import TurnstileCaptcha from 'components/ui/TurnstileCaptcha';
 
 interface IFormInput {
   phone: string;
@@ -21,9 +22,11 @@ interface IFormInput {
 
 const Register = () => {
   const { r } = getJSONFromUrl()
+  const ref = useRef<HTMLDivElement>(null);
   const { loading, handleLoading } = useGlobalAppStore()
   const [shopPasss, setShowPass] = useState(false)
   const { onSetUser } = useAuthApp()
+  const [turnstileToken, setTurnstileToken] = useState('')
   const { t } = useTranslation()
   const navigate = useNavigate()
   const { register, handleSubmit, watch, control, setValue, formState: { errors } } = useForm<IFormInput>({
@@ -48,7 +51,7 @@ const Register = () => {
       const res = await requestService.post('/auth/register', {
         data: {
           ...data,
-          recaptchaToken: ""
+          recaptchaToken: turnstileToken
         }
       })
 
@@ -84,6 +87,7 @@ const Register = () => {
   };
 
 
+
   return (
     <div data-v-fed939fe="" data-v-daf86cc3="" className="register-content">
       <img
@@ -109,7 +113,6 @@ const Register = () => {
               <div className="van-field__body">
                 <input
                   type="text"
-                  inputMode="text" // vì là username chứ không phải số
                   id="van-field-5-input"
                   maxLength={20}
                   minLength={6}
@@ -294,13 +297,16 @@ const Register = () => {
             </span>
           </div>
         </div>
-
+        <TurnstileCaptcha
+          onToken={setTurnstileToken}
+          key="register-turnstile"
+        />
         <div data-v-fed939fe="" className="submit-btn">
           <button
             data-v-fed939fe=""
             type="submit"
             className="w-full rounded-[20px] text-[#fff] van-button van-button--primary van-button--normal van-button--block van-button--round van-button--disabled"
-
+            disabled={!turnstileToken}
           >
             <div className="van-button__content">
               {/**/}

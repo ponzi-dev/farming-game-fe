@@ -22,7 +22,7 @@ const ModalBase = ({
       centered
       open={isModalOpen}
       onCancel={onCancel}
-      zIndex={999999}
+      zIndex={99999}
       footer={null}
       width={400}
       closeIcon={
@@ -33,14 +33,14 @@ const ModalBase = ({
       }
       className="!p-4 !rounded-xl !bg-transparent !shadow-none relative modal-base-custom"
     >
-      <div className="absolute  flex top-[7px] left-1/2 translate-x-[-50%] text-[#fff] z-[999] font-[900] text-[16px]">
+      <div className="absolute  flex top-[7px] left-1/2 translate-x-[-50%] text-[#fff] z-[99] font-[900] text-[16px]">
         {titleHeader}
       </div>
       <div className="absolute inset-0 flex">
         <img src={bg} alt="" className="w-full h-full" />
       </div>
 
-      <div className='px-[15px] pt-[50px] pb-[20px]'>
+      <div className='px-[15px] pt-[50px] pb-[20px] z-[]'>
         {children}
       </div>
     </Modal>

@@ -19,7 +19,7 @@ const createInstance = () => {
       if (accessToken) {
         config.headers.Authorization = `Bearer ${accessToken}`;
       }
-      config.headers.lang = localStorage.getItem("lang") || "en";
+      config.headers.lang = localStorage.getItem("lang") || "vi";
       config.headers.deviceID = deviceID;
       return config;
     },

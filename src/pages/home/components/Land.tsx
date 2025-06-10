@@ -142,24 +142,14 @@ const Land = ({ isLock, order, isMark, isShowLock }: Props) => {
                           <img src={'/icons/diamond-icon.svg'} width={15} className='inline ml-2' />
                         </span>
                       </div>
-                      {/* <div>
-                        {
-                          Date.now() > order?.endTime ? <span className='font-[900]'>-</span>
-                            :
-                            Date.now() >= order?.rewardTime ?
-                              <Tag color='green-inverse'>Có thể thu gom</Tag>
-                              :
-                              <Tag color='orange-inverse'>Chưa thể thu gom</Tag>
-                        }
 
-                      </div> */}
                     </div>
                   </div>
 
                 </div>}>
               <img
                 src={order?.ticket?.desImage}
-                className={clsx(" w-full h-full ", {
+                className={clsx(" w-full h-full animal", {
                   "scale-[1.5]": order?.ticket?.vip === 4,
                   "scale-[1.4]": order?.ticket?.vip === 5,
                   "mt-[-10px]": order?.ticket?.vip === 5

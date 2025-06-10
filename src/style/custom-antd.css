@@ -120,3 +120,7 @@
   top: 10rem;
   color: #000;
 }
+.modal_winner .ant-modal-content {
+  background-color: unset;
+  box-shadow: unset;
+}

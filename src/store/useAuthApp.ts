@@ -37,6 +37,7 @@ type IUser = {
   updatedAt?: Date;
   userName?: string;
   userId?: number;
+  agencyReward:number
 };
 
 export type AuthState = {

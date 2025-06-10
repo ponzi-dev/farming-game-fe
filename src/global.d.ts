@@ -9,6 +9,10 @@ declare global {
         options: { action: string }
       ) => Promise<string>;
     };
+    turnstile: {
+      render: (container: HTMLElement, options: any) => string;
+      remove: (widgetId: string) => void;
+    };
   }
 }
 

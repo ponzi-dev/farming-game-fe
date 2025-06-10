@@ -361,7 +361,7 @@ button.recBtn {
   margin-right: 1.333333rem;
 }
 
-@media (max-width: 992px) {
+/* @media (max-width: 992px) {
   .rotatebox .drawbox[data-v-dd46357c] {
     width: 72.33333vw;
     height: 70.8vw;
@@ -414,4 +414,4 @@ button.recBtn {
   .rotatebox .drawbox .drawuis p[data-v-dd46357c] {
     font-size: 5.666667vw;
   }
-}
+} */

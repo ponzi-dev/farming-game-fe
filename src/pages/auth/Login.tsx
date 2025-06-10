@@ -1,7 +1,9 @@
 import { message, notification } from 'antd';
 import requestService from 'api/request';
 import logo from 'assets/images/logo.png'
+import TurnstileCaptcha from 'components/ui/TurnstileCaptcha';
 import { getJSONFromUrl, getRecaptchaToken } from 'lib/helpers';
+import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
@@ -16,6 +18,7 @@ interface IFormInput {
 const Login = () => {
   const { onSetUser } = useAuthApp()
   const { loading, handleCallbackUser, handleLoading } = useGlobalAppStore()
+  const [turnstileToken, setTurnstileToken] = useState('')
   const { t } = useTranslation()
   const navigate = useNavigate()
   const { register, handleSubmit, watch, control, setValue, formState: { errors } } = useForm<IFormInput>({
@@ -34,7 +37,7 @@ const Login = () => {
       const res = await requestService.post('/auth/login', {
         data: {
           ...data,
-          recaptchaToken: ""
+          recaptchaToken: turnstileToken
         }
       })
       if (res && res.data) {
@@ -94,7 +97,6 @@ const Login = () => {
               <div className="van-field__body">
                 <input
                   type="text"
-                  inputMode="numeric"
                   id="van-field-5-input"
                   {...register("phone", {
                     required: t("auth.username_required"),
@@ -160,6 +162,7 @@ const Login = () => {
           {t("Bạn chưa có tài khoản")} ? <span className='font-[700] cursor-pointer text-[#733e39]' onClick={() => navigate(r ? `/register?r=${r}` : '/register')}>{t("Đăng kí ngay")}</span>
         </div>
         {/**/}
+        <TurnstileCaptcha onToken={setTurnstileToken} />
         <div data-v-544b5ac9="" className="submit-btn">
           <button
             data-v-544b5ac9=""

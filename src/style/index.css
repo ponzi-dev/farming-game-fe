@@ -329,6 +329,21 @@ body {
   animation-iteration-count: 3;
 }
 
+.animal {
+  position: relative; /* Quan trọng! */
+  animation: animalBounce 1.2s ease-in-out infinite;
+}
+
+@keyframes animalWiggle {
+  0%,
+  100% {
+    left: 0;
+  }
+  50% {
+    left: 5px;
+  }
+}
+
 @keyframes fadeIn {
   0% {
     opacity: 0;
@@ -400,5 +415,14 @@ body {
   }
   50% {
     transform: translateY(-1rem);
+  }
+}
+@keyframes animalBounce {
+  0%,
+  100% {
+    top: 0;
+  }
+  50% {
+    top: -2px;
   }
 }

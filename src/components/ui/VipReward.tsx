@@ -1,4 +1,4 @@
-import { Drawer, message } from 'antd'
+import { Drawer, message, notification } from 'antd'
 import requestService from 'api/request'
 import clsx from 'clsx'
 import React, { useEffect, useState } from 'react'
@@ -31,18 +31,27 @@ const AgencyReward = ({ open, setOpen }: Props) => {
   const { user } = useAuthApp()
   const { configApp, handleCallbackUser } = useGlobalAppStore()
   const [data, setData] = useState<any>(null)
-  const today = new Date();
-  const isCheckClaim = today.getDate() >= 1 && today.getDate() <= 10
+  // const today = new Date();
+  const isCheckClaim = user && user.agencyReward < user.vip
 
   const handleClaimSalary = async () => {
     try {
       const res = await requestService.post('/profile/receive-salary')
       if (res && res.data) {
-        message.success("Claimed")
+        notification.success({
+          message: "Claimed",
+          duration: 3,
+          placement: "top"
+        })
+        // message.success("Claimed")
         handleCallbackUser()
       }
     } catch (error: any) {
-      message.error(error?.response?.data?.message)
+      notification.error({
+        message: error?.response?.data?.message,
+        duration: 3,
+        placement: "top"
+      })
     }
   }
 
@@ -137,6 +146,16 @@ const AgencyReward = ({ open, setOpen }: Props) => {
                         <img src={lock_icon} width={40} />
                       </span>
                     }
+                    {user && user.agencyReward >= i.lv && (
+                      <div className="mt-2 inline-flex items-center gap-2 px-3 py-1 border border-green-500 rounded-full bg-green-50 text-green-600 font-semibold shadow-sm">
+                        <img
+                          src="https://s2.coinmarketcap.com/static/cloud/img/loyalty-program/Check.svg"
+                          alt="claimed"
+
+                        />
+                        <span className="text-[12px] font-[700]">Claimed</span>
+                      </div>
+                    )}
 
                   </div>
                 </div>

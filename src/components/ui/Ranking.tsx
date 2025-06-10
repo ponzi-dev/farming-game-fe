@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useTransition } from 'react'
+import { useTranslation } from 'react-i18next'
 
 const Ranking = () => {
+  const { t } = useTranslation()
   return (
     <div className='text-[12px] text-[#000]  z-50 relative h-[250px] flex flex-col justify-center'>
       <p className="text-center text-black text-[15px]">
-        Sự kiện chưa diễn ra !
+        {t("Sự kiện chưa diễn ra")} !
       </p>
 
 

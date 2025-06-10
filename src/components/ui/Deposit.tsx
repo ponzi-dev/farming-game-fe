@@ -268,8 +268,8 @@ const Deposit = () => {
                 {t("Mô tả giá trị lưu trữ")}
               </div>
               <div data-v-0fbd6467="" className="notice-content">
-                {t("1: Do những biến động gần đây của mạng lưới ngân hàng,")}.
-                {t("Nếu thanh toán của bạn không thành công, vui lòng thử")}
+                {/* {t("1: Do những biến động gần đây của mạng lưới ngân hàng,")}. */}
+                1. {t("Nếu thanh toán của bạn không thành công, vui lòng thử")}
                 {t("Liên hệ lại với chúng tôi trong vòng 5 phút")}
                 {t("Báo cáo vấn đề cho bộ phận Dịch vụ khách hàng.")}
                 <br />

@@ -1,4 +1,4 @@
-import { message, Modal } from 'antd'
+import { message, Modal, notification } from 'antd'
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useAuthApp } from 'store/useAuthApp'
@@ -52,7 +52,11 @@ const Treasure = () => {
 
       }
     } catch (error: any) {
-      message.error(error?.response?.data?.message)
+      notification.error({
+        message: error?.response?.data?.message,
+        duration: 3,
+        placement: 'top'
+      })
       setIsClick(false)
     }
 

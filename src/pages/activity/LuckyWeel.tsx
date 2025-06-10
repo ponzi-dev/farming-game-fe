@@ -8,6 +8,7 @@ import { useAuthApp } from "store/useAuthApp"
 import { useGlobalAppStore } from "store/useGlobalApp"
 import actice_bg from 'assets/images/active.png'
 import LuckyWheelGuide from "./components/LuckyWheelGuide"
+import { Modal } from 'antd'
 
 const dolar = '/icons/diamond-icon.svg'
 const dolar1 = '/icons/diamond-3.svg'
@@ -117,8 +118,7 @@ const LuckyWeel = () => {
 
           data-v-dd46357c=""
         />
-        <div className="winner z-[99999] " style={{ display: !!itemWinner ? "block" : 'none' }}
-        >
+        <Modal open={!!itemWinner} footer={null} closable={false} centered className='modal_winner'>
           <div className="winner_container !max-w-[90rem] w-[90%] ">
             <h3 className="congratulation">
               {t("Congratulations")}!
@@ -148,8 +148,8 @@ const LuckyWeel = () => {
             </div>
 
           </div>
+        </Modal>
 
-        </div>
 
 
         <div className="drawbox" data-v-dd46357c="">

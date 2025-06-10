@@ -80,7 +80,7 @@
   "Nếu thanh toán của bạn không thành công, vui lòng thử": "If your payment fails, please try again",
   "Liên hệ lại với chúng tôi trong vòng 5 phút": "Contact us again within 5 minutes",
   "Báo cáo vấn đề cho bộ phận Dịch vụ khách hàng.": "Report the issue to Customer Service.",
-  "2: Thời gian thanh toán là 5 phút": "2: Payment time is 5 minutes",
+  "2: Thời gian thanh toán là 5 phút": "2: Payment time is 10 minutes",
   "3: Số tiền gửi tối thiểu là 10$": "3: Minimum deposit amount is $5",
   "Số Tiền Nạp": "Deposit Amount",
   "Tên Ngân Hàng": "Bank Name",
@@ -94,7 +94,7 @@
   "1Số tiền rút tối thiểu: 2$": "1. Minimum withdrawal amount: ${{amount}}",
   "2Thời gian đón hàng ngày": "2. Daily processing time: 10 AM to 5 PM",
   "Giới hạn rút USDT: 50,6USDT-10.000USDT (chỉ hỗ trợ mạng BEP20)": "USDT Withdrawal Limit: 50.6 USDT - 10,000 USDT (BEP20 network only)",
-  "meo": "Bank Tip: Before withdrawing, please double-check your bank account details and VND account type to ensure your withdrawal arrives promptly. (If the withdrawal is returned due to an abnormal account, please change/add a withdrawal account and resubmit.)",
+  "meo": "Tip: Before withdrawing, please double-check your payment details to ensure the funds are transferred promptly. (If the withdrawal is returned due to an abnormal account, please change or add a new withdrawal account and resubmit.) Withdrawal condition: You must have farming activity history this week. Note: You can only withdraw once per day.",
   "Add New Account": "Add New Account",
   "holderName": "Cardholder Name",
   "nameBank": "Bank Name",
@@ -252,5 +252,9 @@
   "cho vật nuôi, bắt đầu hành trình mới đầy thú vị": "for pets, start a new exciting journey",
   "Nạp lần đầu": "First Deposit",
   "Nạp ngay": "Deposit Now",
-  "rút tiền": "Withdraw"
+  "rút tiền": "Withdraw",
+   "Sự kiện chưa diễn ra":"The event has not started yet.",
+   "Thưởng đại lý":"Referral Commission",
+  "Tổng mua": "Total Purchase",
+   "Lợi nhuận":"Profit"
 }

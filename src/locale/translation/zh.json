@@ -80,7 +80,7 @@
   "Nếu thanh toán của bạn không thành công, vui lòng thử": "如果您的付款未成功，请尝试",
   "Liên hệ lại với chúng tôi trong vòng 5 phút": "请在5分钟内再次联系我们",
   "Báo cáo vấn đề cho bộ phận Dịch vụ khách hàng.": "向客服部门报告问题。",
-  "2: Thời gian thanh toán là 5 phút": "2：付款时间为5分钟",
+  "2: Thời gian thanh toán là 5 phút": "2：付款时间为10分钟",
   "3: Số tiền gửi tối thiểu là 10$": "3：最低存款金额为5美元",
   "Số Tiền Nạp": "充值金额",
   "Tên Ngân Hàng": "银行名称",
@@ -94,7 +94,7 @@
   "1Số tiền rút tối thiểu: 2$": "1最低提现金额：${{amount}}",
   "2Thời gian đón hàng ngày": "2. 每日处理时间：上午10点至下午5点",
   "Giới hạn rút USDT: 50,6USDT-10.000USDT (chỉ hỗ trợ mạng BEP20)": "USDT提现限额：5USDT - 10,000 USDT（仅支持BEP20网络）",
-  "meo": "银行提示：提现前请仔细核对您的银行账户信息和越南盾账户类型，以确保资金及时到账。（若因账户异常导致提现被退回，请更换或添加提现账户后重新提交）",
+  "meo": "提示：提现前，请仔细检查您的付款信息，以确保资金能够及时到账。（如果因账户异常导致提现被退回，请更改或添加新的提现账户并重新提交。）提现条件：本周需有养殖记录。注意：每天只能提现一次。",
   "Add New Account": "添加新账户",
   "holderName": "持卡人姓名",
   "nameBank": "银行名称",
@@ -252,5 +252,9 @@
   "cho vật nuôi, bắt đầu hành trình mới đầy thú vị": "为宠物，开始一段新的精彩旅程",
   "Nạp lần đầu": "首次充值",
   "Nạp ngay": "立即充值",
-  "rút tiền": "提现"
+  "rút tiền": "提现",
+  "Sự kiện chưa diễn ra":"活动尚未开始",
+  "Thưởng đại lý":"代理奖励",
+  "Tổng mua":"总购买",
+  "Lợi nhuận":"利润"
 }
