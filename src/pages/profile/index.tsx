@@ -105,15 +105,15 @@ const Profile = () => {
             </div>
           </div>
           <div data-v-4f0a6390="" className="user-detail">
-            <div data-v-4f0a6390="" className="nickname">
+            <div data-v-4f0a6390="" className="nickname !text-[#fff]">
               {user && user?.phone}
             </div>
-            <div data-v-4f0a6390="" className="user-id">
+            <div data-v-4f0a6390="" className="user-id !text-[#fff]">
               ID: {user?.userId}
             </div>
           </div>
           <div data-v-4f0a6390="" className="balance items-end  flex flex-col  gap-1 !font-[900]" style={{ background: "transparent" }}>
-            <div className='relative mb-[-5px] min-w-[70px] h-[30px]' onClick={() => handleToggleModal({
+            <div className='relative mb-[-5px] w-[70px] h-[30px]' onClick={() => handleToggleModal({
               name: "withdraw",
               type: "drawer",
 
@@ -124,8 +124,8 @@ const Profile = () => {
               <img src={bg_btn_withdraw} className='w-full h-full' />
             </div>
             <div className='flex items-center justify-end '>
-              <span className='font-[900]'>
-                {Number(user?.realBalance?.toFixed(3))}
+              <span className='!font-[900] !text-[#fff]'>
+                {Number(user?.realBalance)?.toFixed(3)}
               </span>
 
               <img src={"/icons/diamond-icon.svg"} alt='' className='size-[30px] ml-2' />

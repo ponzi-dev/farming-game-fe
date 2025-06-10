@@ -303,7 +303,7 @@ const Withdraw = () => {
         placement={breakpoint === 'mobile' ? 'bottom' : 'right'}
         height={"auto"}
         width={"100rem"}
-        zIndex={9999}
+        zIndex={9999999}
         className='security'
         closeIcon={false}
         title={
@@ -397,11 +397,12 @@ const Withdraw = () => {
         <PinInput
           length={6}
           secret
+
           secretDelay={400}
           inputMode="numeric"
           ref={pinRef}
           type="numeric"
-          style={{ padding: '10px', width: "100%", display: 'flex', justifyContent: 'center', gap: "5px" }}
+          style={{ padding: '10px', width: "100%", display: 'flex', justifyContent: 'center', gap: "5px", zIndex: 99999999 }}
           inputStyle={{ borderColor: '#733e39', borderRadius: "10px", borderWidth: '4px' }}
           inputFocusStyle={{ borderColor: '#733e39' }}
           onComplete={async (value, index) => {

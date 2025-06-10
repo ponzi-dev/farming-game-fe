@@ -21,7 +21,7 @@ const MainHeader = () => {
         onClick={() => handleToggleModal({
           name: "profile",
           type: "drawer",
-          title: <div className='text-center'>
+          title: <div className='text-center text-[#fff] font-[900]'>
             Profile
           </div>
         })}
