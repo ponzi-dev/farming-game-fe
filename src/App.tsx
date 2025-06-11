@@ -26,7 +26,7 @@ import clsx from "clsx";
 import GuideInvest from "components/ui/home/GuideInvest";
 
 function App() {
-  const { loading, handleSetConfig, handleSetEvents, configApp, handleToggleModal, openModal } = useGlobalAppStore()
+  const { loading, handleSetConfig, handleSetEvents, configApp, handleToggleModal, openModal, handleCallbackUser } = useGlobalAppStore()
   const { user, logged } = useAuthApp()
   const { onSetDataInvest, dataInvest } = useStoreFarm()
   const { t, i18n } = useTranslation();
@@ -149,6 +149,18 @@ function App() {
 
   }, [configApp?.LIVECHAT_ID]);
 
+  useEffect(() => {
+    if (socket) {
+      socket.on("depositSuccess", (val: any) => {
+        if (val?.isCheck) {
+          handleCallbackUser()
+        }
+      });
+      return () => {
+        socket.off("depositSuccess");
+      };
+    }
+  }, [socket]);
 
   return (
     <ConfigProvider>

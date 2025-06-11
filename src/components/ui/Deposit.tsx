@@ -287,7 +287,7 @@ const Deposit = () => {
                 if (completed) {
                   reset()
                 } else {
-                  return <div className='text-center text-[5rem] font-[700] mb-[3rem]'>{minutes}:{seconds}</div>;
+                  return <div className='text-center text-[5rem] font-[700] text-[#fff] mb-[3rem]'>{minutes}:{seconds}</div>;
                 }
               }}
             />
@@ -310,10 +310,10 @@ const Deposit = () => {
             }
 
             <div className='flex justify-between rem-3 items-center my-4'>
-              <label className='font-[700]'>
+              <label className='font-[700] text-[#666]'>
                 {t("Số Tiền Nạp")}
               </label>
-              <div className='font-[700] flex items-center gap-2 text-[4rem]'>{amount}$
+              <div className='font-[900] text-[#564949] flex items-center gap-2 text-[4rem]'>{amount}$
 
                 <div className='flex justify-end rem-3'
 
@@ -334,19 +334,19 @@ const Deposit = () => {
               paymentMethod === 'crypto' &&
               <>
                 <div className='flex justify-between rem-3 items-center mb-4'>
-                  <label className='font-[700]'>
+                  <label className='font-[700] text-[#666]'>
                     {t("Mạng lưới")}
                   </label>
-                  <div className='font-[700] text-[3rem] flex items-center'>
+                  <div className='font-[900] text-[#564949] text-[3rem] flex items-center'>
                     BNB Smart Chain (BEP20)
                   </div>
 
                 </div>
                 <div className='flex justify-between rem-3 items-center mb-4'>
-                  <label className='font-[700]'>
+                  <label className='font-[700] text-[#666]'>
                     {t("Địa chỉ nạp")}
                   </label>
-                  <div className='font-[700] text-right text-[2.5rem] flex items-center gap-3  max-w-[65%]' style={{
+                  <div className='font-[900] text-[#564949] text-right text-[2.5rem] flex items-center gap-3  max-w-[65%]' style={{
                     whiteSpace: 'pre-line',
                     wordBreak: 'break-word'
                   }}>
@@ -370,10 +370,10 @@ const Deposit = () => {
               paymentMethod === 'banking' &&
               <>
                 <div className='flex justify-between rem-3 items-center mb-4'>
-                  <label className='font-[700]'>
+                  <label className='font-[700] text-[#564949]'>
                     {t("Số tiền thực tế")}
                   </label>
-                  <div className='font-[700] text-[3rem] flex items-center'>{formatNumber(amount * configApp?.rateUsd) || 26000}
+                  <div className='font-[700] text-[#564949] text-[3rem] flex items-center'>{formatNumber(amount * configApp?.rateUsd) || 26000}
                     <svg
                       onClick={() => {
                         copyToClipboard(`${amount * configApp?.rateUsd || 26000}`)
@@ -387,10 +387,10 @@ const Deposit = () => {
 
                 </div>
                 <div className='flex justify-between rem-3 items-center mb-4'>
-                  <label className='font-[700]'>
+                  <label className='font-[700] text-[#564949]'>
                     {t("Tên Ngân Hàng")}
                   </label>
-                  <div className='font-[700] text-[3rem] flex items-center'>{configApp?.paymentGateWay?.banking?.nameBank}
+                  <div className='font-[700] text-[#564949] text-[3rem] flex items-center'>{configApp?.paymentGateWay?.banking?.nameBank}
                     <svg
                       onClick={() => {
                         copyToClipboard(`${configApp?.paymentGateWay?.banking?.nameBank}`)
@@ -403,10 +403,10 @@ const Deposit = () => {
                   </div>
                 </div>
                 <div className='flex justify-between rem-3 items-center mb-4'>
-                  <label className='font-[700]'>
+                  <label className='font-[700] text-[#564949]'>
                     {t("Số Tài Khoản")}
                   </label>
-                  <div className='font-[700] text-[3rem] flex items-center'>{configApp?.paymentGateWay?.banking?.numberBank}
+                  <div className='font-[700] text-[#564949] text-[3rem] flex items-center'>{configApp?.paymentGateWay?.banking?.numberBank}
                     <svg
                       onClick={() => {
                         copyToClipboard(`${configApp?.paymentGateWay?.banking?.numberBank}`)
@@ -419,7 +419,7 @@ const Deposit = () => {
                   </div>
                 </div>
                 <div className='flex justify-between rem-3 items-center mb-[15px]'>
-                  <label className='font-[700]'>
+                  <label className='font-[700] text-[#666]'>
                     {t("Nội dung")}
                   </label>
                   <div className='font-[900] text-[3rem] flex items-center text-red-600'>{resultDeposit?.note}
@@ -439,11 +439,11 @@ const Deposit = () => {
 
               </>
             }
-            <div className='font-bold rem-3'>
-              Note : <span className='text-red-600'>{t("Để giao dịch được xử lý nhanh chóng, vui lòng điền đầy đủ và chính xác nội dung chuyển khoản theo hướng dẫn")}</span>
+            <div className='font-bold rem-3 text-[#666]'>
+              Note : <span className='text-red-600'>{t("Hệ thống nạp tự động. Để giao dịch được xử lý nhanh chóng thành công, vui lòng chuyển đúng số tiền nạp trên mạng BNB Smart Chain (BEP20). Vui lòng không chuyển tiền vào ví này nếu hết thời gian xử lý. Xin cám ơn")}</span>
             </div>
             <div className='flex justify-center mt-5'>
-              <button className='flex items-center gap-1'
+              <button className='flex items-center gap-1 text-[#564949]'
                 onClick={() => reset()}
               >
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
