@@ -147,15 +147,17 @@ const Land = ({ isLock, order, isMark, isShowLock }: Props) => {
                   </div>
 
                 </div>}>
-              <img
-                src={order?.ticket?.desImage}
-                className={clsx(" w-full h-full animal", {
-                  "scale-[1.5]": order?.ticket?.vip === 4,
-                  "scale-[1.4]": order?.ticket?.vip === 5,
-                  "mt-[-10px]": order?.ticket?.vip === 5
-                })} ///animal-move
-                alt="animal"
-              />
+              <div className='animal'>
+                <img
+                  src={order?.ticket?.desImage}
+                  className={clsx(" w-full h-full ", {
+                    "scale-[1.5]": order?.ticket?.vip === 4,
+                    "scale-[1.4]": order?.ticket?.vip === 5,
+                    "mt-[-10px]": order?.ticket?.vip === 5
+                  })} ///animal-move
+                  alt="animal"
+                />
+              </div>
             </Popover>
 
 

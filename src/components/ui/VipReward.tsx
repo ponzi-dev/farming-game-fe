@@ -120,7 +120,7 @@ const AgencyReward = ({ open, setOpen }: Props) => {
         >
 
         </div>
-        <div data-v-0c054b6c="" className="salary-list">
+        <div data-v-0c054b6c="" className="salary-list pb-[50px]">
           {
             user && configApp?.vipList?.map((i: IVipInfo, index: number) => (
               <div data-v-0c054b6c="" className={clsx("salary-item ", {

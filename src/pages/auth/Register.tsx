@@ -23,7 +23,7 @@ interface IFormInput {
 const Register = () => {
   const { r } = getJSONFromUrl()
   const ref = useRef<HTMLDivElement>(null);
-  const { loading, handleLoading } = useGlobalAppStore()
+  const { loading, handleLoading, handleCallbackUser } = useGlobalAppStore()
   const [shopPasss, setShowPass] = useState(false)
   const { onSetUser } = useAuthApp()
   const [turnstileToken, setTurnstileToken] = useState('')
@@ -66,7 +66,7 @@ const Register = () => {
           res?.data?.data?.tokens?.refreshToken
         );
         onSetUser(res?.data?.data?.user)
-        // message.success(res?.data?.message)
+        handleCallbackUser()
         setTimeout(() => {
           handleLoading(false)
           navigate('/')

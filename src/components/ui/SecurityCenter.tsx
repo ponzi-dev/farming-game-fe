@@ -39,7 +39,11 @@ const SecurityCenter = ({ open, setOpen }: Props) => {
         }
       })
       if (res && res.data) {
-        message.success("Updated")
+        notification.success({
+          message: "Updated",
+          duration: 2,
+          placement: "top"
+        })
         reset()
         setOpenChange(false)
       }

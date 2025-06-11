@@ -1,4 +1,4 @@
-import { Drawer, message } from 'antd'
+import { Drawer, message, notification } from 'antd'
 import React from 'react'
 import { useAuthApp } from 'store/useAuthApp'
 import QRCode from "react-qr-code";
@@ -114,7 +114,11 @@ const InviteFriend = ({ onClose, open }: Props) => {
               <svg
                 onClick={() => {
                   copyToClipboard(`${user?.refCode}`)
-                  message.success("Copied")
+                  notification.success({
+                    message: 'Copied',
+                    duration: 2,
+                    placement: "top"
+                  })
                 }}
                 data-v-7e679115=""
                 className="inline-block copy-icon"
@@ -140,7 +144,11 @@ const InviteFriend = ({ onClose, open }: Props) => {
               <svg
                 onClick={() => {
                   copyToClipboard(getUrl(`register?r=${user?.refCode}`))
-                  message.success("Copied")
+                  notification.success({
+                    message: 'Copied',
+                    duration: 2,
+                    placement: "top"
+                  })
                 }}
                 data-v-7e679115=""
                 className="inline-block copy-icon"

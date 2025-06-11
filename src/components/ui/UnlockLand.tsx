@@ -1,3 +1,4 @@
+import { notification } from "antd"
 import requestService from "api/request"
 import { useGlobalAppStore } from "store/useGlobalApp"
 
@@ -18,17 +19,23 @@ const UnlockLand = () => {
           title: ""
         })
       }
-    } catch (error) {
-      console.log('====================================');
-      console.log(error);
-      console.log('====================================');
+    } catch (error: any) {
+      notification.error({
+        message: error?.response?.data?.message,
+        duration: 3,
+        placement: 'top'
+      })
     }
     handleLoading(false)
   }
   return (
     <div className='text-[12px] text-[#000]  z-50 relative h-[250px] flex flex-col justify-center'>
       <p className="text-center text-black text-[15px]">
-        Bạn có muốn <strong className="text-red-600">mở khóa ô đất này với 5U</strong> không?<br />
+        Bạn có muốn <strong className="text-red-600">mở khóa ô đất này với 8
+          <span>
+            <img src="/icons/diamond-icon.svg" className="inline-block" width={15} />
+          </span>
+        </strong> không?<br />
         <span className="text-gray-700">Khám phá vùng đất mới và bắt đầu xây dựng trang trại của bạn ngay hôm nay!</span>
       </p>
       <div className="mt-4 flex justify-center gap-4">

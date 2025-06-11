@@ -44,8 +44,8 @@ const VipFarmReward = () => {
         <div data-v-0c054b6c="" className="level-info  items-center justify-center">
 
           <span data-v-0c054b6c="" className="value flex items-center gap-4 ">
-            VIP <img src={renderVip(user?.farmVip || 0)} className={clsx('size-[60px]', {
-              'size-[60px]': user && user?.farmVip > 0
+            VIP <img src={renderVip(user?.farmVip || 0)} className={clsx('size-[30px]', {
+              'size-[45px]': user && user?.farmVip > 0
             })} />
           </span>
         </div>
@@ -81,12 +81,12 @@ const VipFarmReward = () => {
                       /{t("ngày")}
                     </span>
                   </div>
-                  <div data-v-0c054b6c="" className="amount !justify-start">
+                  {/* <div data-v-0c054b6c="" className="amount !justify-start">
                     <span data-v-0c054b6c="" className="value !text-[12px]">
                       Gi 1% {t("rút tiền")}
                     </span>
 
-                  </div>
+                  </div> */}
                 </div>
 
               </div>

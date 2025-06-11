@@ -51,12 +51,12 @@ const Login = () => {
           res?.data?.data?.tokens?.refreshToken
         );
         onSetUser(res?.data?.data?.user)
-
+        handleCallbackUser()
         // message.success(res?.data?.message)
         handleLoading(false)
         setTimeout(() => {
           navigate('/')
-          handleCallbackUser()
+
         }, 500)
 
       }

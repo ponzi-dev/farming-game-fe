@@ -12,18 +12,14 @@ import icon_analys from 'assets/img_custom/color_wd_success_pop_money1.png'
 import { useTranslation } from 'react-i18next'
 import bg_btn_withdraw from 'assets/img_custom/me_tx_bg.9.png'
 import { useAuthApp } from 'store/useAuthApp'
-import vip_0 from 'assets/images/vip-0.png'
-import vip_1 from 'assets/images/vip-1.png'
-import vip_2 from 'assets/images/vip-2.png'
-import vip_3 from 'assets/images/vip-3.png'
-import vip_4 from 'assets/images/vip-4.png'
-import vip_5 from 'assets/images/vip-5.png'
+import InvestmentStatistics from 'components/ui/InvestmentStatistics'
+import { useGlobalAppStore } from 'store/useGlobalApp'
+import { renderVip } from 'constants/vipIcon'
 import bg_avt from 'assets/img_custom/trialtask_bg_nums.png'
 import bg_menu from 'assets/img_custom/skill_boss_family_boss_bg.webp'
 import clsx from 'clsx'
 
-import InvestmentStatistics from 'components/ui/InvestmentStatistics'
-import { useGlobalAppStore } from 'store/useGlobalApp'
+
 const Profile = () => {
   const { user, logoutUser } = useAuthApp()
   const { handleToggleModal, handleLoading } = useGlobalAppStore()
@@ -58,25 +54,6 @@ const Profile = () => {
     }
   }
 
-  const renderVip = () => {
-    switch (user?.farmVip) {
-      case 1:
-        return vip_1
-      case 2:
-        return vip_2
-      case 3:
-        return vip_3
-      case 4:
-        return vip_4
-      case 5:
-        return vip_5
-      default:
-        return vip_0
-    }
-  }
-
-
-
   return (
     <div data-v-4f0a6390="" data-v-e697ea1f="" className="profile-page bg-no-repeat " >
       <div data-v-4f0a6390="" className="user-info">
@@ -98,7 +75,7 @@ const Profile = () => {
             </div>
             <div data-v-4f0a6390="" className="vip-badge min-w-[72px]">
               <span data-v-4f0a6390="" className="vip-icon flex items-center gap-1">
-                VIP <img src={renderVip()} className={clsx('size-[20px]', {
+                VIP <img src={renderVip(user?.farmVip || 0)} className={clsx('size-[20px]', {
                   'size-[35px]': user && user?.farmVip > 0
                 })} />
               </span>

@@ -330,8 +330,18 @@ body {
 }
 
 .animal {
-  position: relative; /* Quan trọng! */
-  animation: animalBounce 1.2s ease-in-out infinite;
+  animation: animalBreath 1s ease-in-out infinite;
+  transform-origin: center center;
+}
+
+@keyframes animalBreath {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.03); /* Phồng nhẹ */
+  }
 }
 
 @keyframes animalWiggle {

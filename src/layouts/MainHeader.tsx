@@ -8,6 +8,8 @@ import vip1 from 'assets/images/vip-5.png'
 import { formatNumber } from 'lib/helpers'
 import { useGlobalAppStore } from 'store/useGlobalApp'
 import bg_avt from 'assets/img_custom/trialtask_bg_nums.png'
+import { renderVip } from 'constants/vipIcon'
+import clsx from 'clsx'
 
 
 const MainHeader = () => {
@@ -15,6 +17,10 @@ const MainHeader = () => {
   const { handleToggleModal } = useGlobalAppStore()
   const { t } = useTranslation();
   const { user } = useAuthApp()
+
+
+
+
   return (
     <div className="fixed top-0 left-0 right-0 z-[10000] sm:max-w-[100rem] m-auto flex items-center justify-between p-[3.2rem] bg-transparent">
       <div className='flex gap-2 items-center relative cursor-pointer'
@@ -35,7 +41,9 @@ const MainHeader = () => {
         <div className='flex flex-col gap-1 bg-[#ffffffe6] rounded-3xl opacity-95 absolute px-[10px] left-0 top-[40px] pt-[4px]'>
           <div className='flex gap-1 text-[12px] items-center font-[900] text-[#733e39]'>
             VIP
-            <img src={vip1} width={25} />
+            <img src={renderVip(user?.farmVip || 0)} className={clsx('size-[20px]', {
+              'size-[30px]': user && user?.farmVip > 0
+            })} />
           </div>
         </div>
       </div>
