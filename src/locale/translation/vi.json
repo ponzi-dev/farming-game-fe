@@ -4,6 +4,7 @@
     "invalid_phone_number_format": "Số điện thoại không đúng định dạng",
     "phone_required": "Số điện thoại không được để trống",
     "password": "Mật khẩu",
+    "username_required":"Tên tài khoản không được để trống",
     "password_required": "Mật khẩu không được để trống",
     "login": "Đăng nhập",
     "title_regis": "Tạo tài khoản mới",
@@ -190,15 +191,15 @@
   "Bạn đã có tài khoản": "Bạn đã có tài khoản",
   "Thăm nông trại của bạn": "Thăm nông trại của bạn",
   "Thường xuyên thăm nông trại để có thu nhập tốt hơn": "Thường xuyên thăm nông trại để có thu nhập tốt hơn",
-  "Thuê ngay": "Thuê ngay",
-  "Tên trang trại": "Tên trang trại",
-  "Thời gian thuê": "Thời gian thuê",
+  "Thuê ngay": "Mua ngay",
+  "Tên trang trại": "Tên vật nuôi",
+  "Thời gian thuê": "Thời gian sống",
   "Thu nhập mỗi ngày": "Thu nhập mỗi ngày",
-  "Giá thuê": "Giá thuê",
+  "Giá thuê": "Giá mua",
   "Tổng thu nhập": "Tổng thu nhập",
   "Lưu ý": "Lưu ý",
   "Bạn có thể huỷ thuê trang trại bất kì lúc nào. Bạn sẽ nhận lại được 10% tiền thuê": "Bạn có thể huỷ thuê trang trại bất kì lúc nào. Bạn sẽ nhận lại được 10% tiền thuê",
-  "Bạn xác nhận thuê trang trại này với giá": "Bạn xác nhận thuê trang trại này với giá",
+  "Bạn xác nhận thuê trang trại này với giá": "Bạn xác nhận mua vật nuôi này với giá",
   "trong": "trong",
   "ngày": "ngày",
   "Hợp đồng thuê trang trại": "Hợp đồng thuê trang trại",
@@ -281,7 +282,11 @@
  "Mạng lưới":"Mạng lưới",
  "Địa chỉ nạp":"Địa chỉ nạp",
  "deposit_note":"Hệ thống nạp tự động. Để giao dịch được xử lý nhanh chóng thành công, vui lòng chuyển đúng số tiền nạp trên mạng BNB Smart Chain (BEP20). Vui lòng không chuyển tiền vào ví này nếu hết thời gian xử lý. Xin cám ơn",
- "unlock_land":"Mở khoá đất"
+ "unlock_land":"Mở khoá đất",
+ "username_required":"Tên tài khoản không được để trống",
+ "Nhập tên tài khoản":"Nhập tên tài khoản",
+ "Thông báo":"Thông báo",
+ "Điều kiện nhận thưởng":"Điều kiện nhận thưởng"
  
  
 }

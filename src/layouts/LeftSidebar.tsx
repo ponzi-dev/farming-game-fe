@@ -82,7 +82,7 @@ const LeftSidebar = () => {
               handleToggleModal({
                 name: "chat",
                 type: "drawer",
-                title: "Box Chat"
+                title: <div className='text-[#fff] text-center'>{"Box Chat"}</div>
               })
               setCountUnRead(0)
             }}>

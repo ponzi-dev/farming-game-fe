@@ -228,6 +228,7 @@ export const AddPaymentMethod = ({ open, setOpen }: Props) => {
             <Tabs
               onChange={onChange}
               items={[
+
                 // {
                 //   label: "Banking",
                 //   children: tab === 'banking' &&
@@ -415,6 +416,11 @@ export const AddPaymentMethod = ({ open, setOpen }: Props) => {
 
                   ),
                   key: "crypto"
+                },
+                {
+                  label: "Local Banking",
+                  children: <div className=''>Coming Soon</div>,
+                  key: "banking"
                 },
               ]}
             />

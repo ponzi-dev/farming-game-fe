@@ -127,7 +127,8 @@ const AgencyReward = ({ open, setOpen }: Props) => {
 
               <div data-v-0c054b6c="" className="current-level !justify-end !p-[2rem]"
               >
-                <div className='font-[900] underline cursor-pointer' onClick={() => setShowRule(true)}>Điều kiện nhận thưởng</div>
+                <div className='font-[900] underline cursor-pointer' onClick={() => setShowRule(true)}>
+                  {t("Điều kiện nhận thưởng")}</div>
 
               </div>
               <div data-v-0c054b6c="" className="salary-list pb-[50px]">

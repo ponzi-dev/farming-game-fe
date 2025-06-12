@@ -65,7 +65,7 @@ const Land = ({ isLock, order, isMark, isShowLock }: Props) => {
 
     return (
       <span className='font-[700]'>
-        {days > 0 ? `${days} ngày ` : ''}
+        {days > 0 ? `${days} ${t('ngày')} ` : ''}
         {pad(hours)}:{pad(minutes)}:{pad(seconds)}
       </span>
     );

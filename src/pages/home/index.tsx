@@ -1,24 +1,12 @@
 import React from 'react'
 import bg_farm from 'assets/img_custom/home_image_bg.9.png'
-
-import Marquee from 'react-fast-marquee'
-import { useGlobalAppStore } from 'store/useGlobalApp'
-import { useTranslation } from 'react-i18next'
 import HomFarm from './components/HomeFarm'
+import NoticeBar from 'components/ui/home/NoticeBar'
+
 const Home = () => {
-  const { i18n } = useTranslation();
-  const { configApp } = useGlobalAppStore()
-
-  const marqueeText = () => {
-    const data = configApp?.HOME_NOTIFICATION && JSON.parse(configApp?.HOME_NOTIFICATION)
-    if (i18n?.language === 'vi') return data?.vi
-    if (i18n?.language === 'zh') return data?.zh
-    return data?.en
-  }
-
   return (
     <>
-
+      <NoticeBar />
       <div style={{
         background: `url(${bg_farm})`,
         backgroundPosition: 'center',
@@ -29,10 +17,10 @@ const Home = () => {
           <div className="w-full max-w-[400px] mx-auto aspect-square relative overflow-visible">
             <HomFarm />
           </div>
-
-
         </div>
       </div>
+
+
     </>
 
   )

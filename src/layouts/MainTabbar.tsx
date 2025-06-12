@@ -50,7 +50,7 @@ const TabBar = () => {
   }
 
   return (
-    <div className="border-box  z-[999] bg-[#c28569]  fixed bottom-[10px] left-1/2 translate-x-[-50%] max-w-[350px]  w-full">
+    <div className="border-box  z-[999] bg-[#c28569]  fixed bottom-[10px] left-1/2 translate-x-[-50%] max-w-[400px]  w-full">
       <div className="border-box flex justify-between items-center relative">
 
         <div className="absolute right-[-15px] top-[-15px] cursor-pointer"
@@ -109,24 +109,21 @@ const TabBar = () => {
         }
         open={openConfirm}
       >
-        <div className="bg-[#fff9ec]  border border-yellow-300 rounded-[20px] p-4 text-center shadow-md">
+        <div className="bg-[#fff9ec]  border border-yellow-300 rounded-[20px] p-5 text-center shadow-md">
           <h3 className="text-[16px] font-semibold text-[#333] my-5">
             {t("Bạn xác nhận thuê trang trại này với giá")}
-          </h3>
 
-          <div className="text-[20px] my-5  font-bold text-red-600  flex items-center justify-center gap-2">
-            {investSelected?.price}
-            <img src="/icons/diamond-icon.svg" width={20} alt="diamond" />
-          </div>
+            <span className="text-[20px] ml-[10px]   font-bold text-red-600   gap-2">
+              {investSelected?.price}
+              <img src="/icons/diamond-icon.svg" width={20} alt="diamond" className='inline-block' />
+              <span className='text-[#333]'> {t("trong")} </span>
+              <span className="text-orange-600 font-bold ml-1">
+                {" "}{investSelected?.earningDay}  {t("ngày")}
+              </span>
+              {" "}?
 
-          <h3 className="text-[16px] font-semibold text-[#333] mb-5">
-            {t("trong")}
-            <span className="text-orange-600 font-bold ml-1">
-              {" "}{investSelected?.earningDay}  {t("ngày")}
             </span>
-            {" "}?
           </h3>
-
           <div className="mt-4 px-5">
             <button
               className="w-full h-[40px]  bg-[#8B4513] text-white py-2 rounded-xl text-[16px] font-bold hover:opacity-90 transition"
@@ -166,7 +163,10 @@ const TabBar = () => {
       >
         <div className="bg-[#fffef0] rounded-[20px] p-5 shadow-lg border border-yellow-200  mx-auto">
           <div className="space-y-4 text-[16px] text-[#444]">
-            <div className="flex justify-between items-center mb-[15px]">
+            <div className="flex justify-center items-center mb-[15px]">
+              <img src={investSelected?.desImage} width={100} className='animal' />
+            </div>
+            <div className="flex justify-between items-center !mb-[15px]">
               <span>{t("Tên trang trại")}</span>
               <span className="font-bold text-right">{investSelected?.name}</span>
             </div>
