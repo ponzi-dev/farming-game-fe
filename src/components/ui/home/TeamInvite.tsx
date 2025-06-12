@@ -15,7 +15,7 @@ interface Props {
 const TeamInvite = ({ open, setOpen }: Props) => {
   const { t } = useTranslation()
   const [summary, setSummary] = useState<any>()
-
+  const [showInfoAgency, setShowInfoAgency] = useState(false)
 
 
   const getSummaryTeam = async () => {
@@ -38,7 +38,7 @@ const TeamInvite = ({ open, setOpen }: Props) => {
   return (
     <Drawer
       title={
-        <div className='text-center'>
+        <div className='text-center text-[#fff]'>
           {t("TEAM")}
         </div>
       }

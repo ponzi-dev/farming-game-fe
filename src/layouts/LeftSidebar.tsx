@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useTransition } from 'react'
-import botany5 from 'assets/img_custom/public_botany_9.png'
-import bg_avt from 'assets/img_custom/tasks_bg_nums.png'
+
 import home_txt from 'assets/img_custom/color_task_active_icon_1.png'
 import reward_agency from 'assets/img_custom/color_integral_root_reward_hall_icon.png'
 import deposit_fist from 'assets/img_custom/progress_icon_gift.png'

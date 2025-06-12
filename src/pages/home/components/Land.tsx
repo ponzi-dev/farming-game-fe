@@ -131,13 +131,13 @@ const Land = ({ isLock, order, isMark, isShowLock }: Props) => {
 
                     <div className='flex flex-col'>
                       <div className='text-[10px] text-[#0e0d0d]'>
-                        Thời gian sống : <Countdown
+                        {t("Thời gian sống")} : <Countdown
                           renderer={renderer}
                           date={order?.endTime}
                         />
                       </div>
                       <div className='text-[10px] text-[#0e0d0d] flex items-center gap-1'>
-                        Sản lượng hôm nay:  <span className='font-[900]'>
+                        {t("Sản lượng hôm nay")}:  <span className='font-[900]'>
                           + {Number(order?.currentIncome?.toFixed(5))}
                           <img src={'/icons/diamond-icon.svg'} width={15} className='inline ml-2' />
                         </span>

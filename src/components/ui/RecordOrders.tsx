@@ -3,9 +3,8 @@ import requestService from 'api/request'
 import clsx from 'clsx'
 import close_icon from 'assets/img_custom/clolor_dialog_close.png'
 import React, { useEffect, useState } from 'react'
-import dolar from 'assets/images/dollar.png'
 import { useTranslation } from 'react-i18next'
-import { TRANSACTION_TYPE_REFUND_TICKET } from 'constants/define'
+import { TRANSACTION_TYPE_REFUND_TICKET, TRANSACTION_TYPE_UNLOCK_LAND } from 'constants/define'
 import { useAuthApp } from 'store/useAuthApp'
 interface Props {
   setOpen: (val: boolean) => void,
@@ -66,7 +65,7 @@ const RecordOrders = ({ open, setOpen }: Props) => {
                   {Number(i?.currentBalanceUser?.toFixed(3))}
                 </div>
                 <div data-v-08b1e8b3 className='currency items-center flex h-full'>
-                  <img src={dolar} width={20} />
+                  <img src={"/icons/diamond-icon.svg"} width={20} />
                 </div>
               </div>
             </div>
@@ -78,7 +77,7 @@ const RecordOrders = ({ open, setOpen }: Props) => {
                   {i?.value > 0 ? "+" : ""} {Number(i?.value?.toFixed(3))}
                 </div>
                 <div data-v-08b1e8b3 className='currency'>
-                  <img src={dolar} width={20} />
+                  <img src={"/icons/diamond-icon.svg"} width={20} />
                 </div>
               </div>
               <div data-v-08b1e8b3 className='record-reason'>
@@ -90,6 +89,9 @@ const RecordOrders = ({ open, setOpen }: Props) => {
                 }
                 {
                   i?.transaction_type === TRANSACTION_TYPE_REFUND_TICKET && t("refun ticket")
+                }
+                {
+                  i?.transaction_type === TRANSACTION_TYPE_UNLOCK_LAND && t("unlock_land")
                 }
               </div>
             </div>

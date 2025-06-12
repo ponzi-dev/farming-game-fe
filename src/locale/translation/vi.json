@@ -51,7 +51,7 @@
   "Lịch sử giao dịch": "Lịch sử giao dịch",
   "Số dư": "Số dư",
   "Cộng tiền phân phối": "Thu hoạch",
-  "Mua ticket": "Thuê trang trại",
+  "Mua ticket": "Mua vật nuôi",
   "Không có dữ liệu": "Không có dữ liệu",
   "Xác nhận": "Xác nhận",
   "Tên Ticket": "Tên Ticket",
@@ -263,6 +263,25 @@
  "Cá nhân":"Cá nhân",
  "Sự kiện chưa diễn ra":"Sự kiện chưa diễn ra",
  "Tổng mua":"Tổng mua",
- "Lợi nhuận":"Lợi nhuận"
+ "Lợi nhuận":"Lợi nhuận",
+ "Thời gian sống":"Thời gian sống",
+ "Sản lượng hôm nay":"Sản lượng hôm nay",
+ "Bạn có muốn":"Bạn có muốn",
+ "mở khóa ô đất này với":"mở khóa ô đất này với",
+ "không":"không",
+ "Khám phá vùng đất mới và bắt đầu xây dựng trang trại của bạn ngay hôm nay":"Khám phá vùng đất mới và bắt đầu xây dựng trang trại của bạn ngay hôm nay",
+ "Mở khóa":"Mở khóa",
+ "Hủy":"Hủy",
+ "Nhận thưởng đại lý":"Nhận thưởng đại lý",
+ "Điểm danh":"Điểm danh",
+ "Lì xì":"Lì xì",
+ "Vòng quay may mắn":"Vòng quay may mắn",
+ "Cấp":"Cấp",
+ "Mở":"Mở",
+ "Mạng lưới":"Mạng lưới",
+ "Địa chỉ nạp":"Địa chỉ nạp",
+ "deposit_note":"Hệ thống nạp tự động. Để giao dịch được xử lý nhanh chóng thành công, vui lòng chuyển đúng số tiền nạp trên mạng BNB Smart Chain (BEP20). Vui lòng không chuyển tiền vào ví này nếu hết thời gian xử lý. Xin cám ơn",
+ "unlock_land":"Mở khoá đất"
+ 
  
 }

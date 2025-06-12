@@ -465,7 +465,7 @@ const Deposit = () => {
               </>
             }
             <div className='font-bold rem-3 text-[#666]'>
-              Note : <span className='text-red-600'>{t("Hệ thống nạp tự động. Để giao dịch được xử lý nhanh chóng thành công, vui lòng chuyển đúng số tiền nạp trên mạng BNB Smart Chain (BEP20). Vui lòng không chuyển tiền vào ví này nếu hết thời gian xử lý. Xin cám ơn")}</span>
+              Note : <span className='text-red-600'>{t("deposit_note")}</span>
             </div>
             <div className='flex justify-center mt-5'>
               <button className='flex items-center gap-1 text-[#564949]'

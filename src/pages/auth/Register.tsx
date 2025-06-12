@@ -66,7 +66,6 @@ const Register = () => {
           res?.data?.data?.tokens?.refreshToken
         );
         onSetUser(res?.data?.data?.user)
-        handleCallbackUser()
         setTimeout(() => {
           handleLoading(false)
           navigate('/')

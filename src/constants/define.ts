@@ -15,7 +15,7 @@ export const TRANSACTION_TYPE_REWARD_REFFERAL = "reward_refferal";
 export const TRANSACTION_TYPE_REFUND_TICKET = "refund_ticket";
 export const TRANSACTION_TYPE_DRAW_REWARD = "reward_draw";
 export const TRANSACTION_TYPE_MINE_REWARD = "reward_mine";
-
+export const TRANSACTION_TYPE_UNLOCK_LAND = "unlock_land";
 
 export const TRANSACTION_TYPE_LIXI_REWARD = "LIXI_MOI_NGAY";
 

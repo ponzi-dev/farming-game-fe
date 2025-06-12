@@ -149,7 +149,7 @@ const LuckyMoney = () => {
                 </div> */}
               </div>
               <div className='absolute top-[5%] left-0 w-full h-full flex flex-col justify-center items-center text-[20px] font-[900] text-[#bc6060]'>
-                Mở
+                {t("Mở")}
               </div>
 
             </div>
