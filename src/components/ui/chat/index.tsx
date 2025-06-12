@@ -7,6 +7,7 @@ import avt_default1 from 'assets/img_custom/uikit_emoji_icon_normal.png'
 import bg_avt from 'assets/img_custom/trialtask_bg_nums.png'
 import { renderVip } from 'constants/vipIcon';
 import clsx from 'clsx';
+import { notification } from 'antd';
 
 interface Message {
   _id?: string
@@ -64,16 +65,30 @@ const BoxChat = () => {
     };
   }, [user?._id]);
 
+  const blacklist = ["xấu", "bậy", "chửi", "fuck", "shit", "đm", "ngu", "sập",
+    "app vịt", "app gà"
+  ]; // ví dụ
+
+  function filterBadWords(text: string, blacklist: string[]): string {
+    const regex = new RegExp(`\\b(${blacklist.join("|")})\\b`, "gi");
+    return text.replace(regex, "***");
+  }
+
 
   const handleSend = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!user?.isLockChat) return notification.error({
+      message: "Account locked !!!",
+      duration: 3,
+      placement: "top"
+    })
     if (!input.trim()) return;
     if (!user || !user._id) {
       return;
     }
-
+    const cleanInput = filterBadWords(input.trim(), blacklist);
     const newMsg: Message = {
-      content: input.trim(),
+      content: cleanInput,
       sender: user._id, // chắc chắn có sender
     };
 

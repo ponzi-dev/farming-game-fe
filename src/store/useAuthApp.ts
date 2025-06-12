@@ -32,6 +32,7 @@ type IUser = {
   refCode: string;
   roles: any;
   verified?: boolean;
+  isLockChat?:boolean;
   status?: boolean;
   createdAt?: Date;
   updatedAt?: Date;
