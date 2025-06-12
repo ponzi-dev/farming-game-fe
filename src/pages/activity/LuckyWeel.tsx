@@ -1,5 +1,5 @@
 import rw1 from 'assets/icons/fortune-wheel.png'
-import rw2 from 'assets/images/good-luck.png'
+// import rw2 from 'assets/images/good-luck.png'
 
 import { useTranslation } from "react-i18next"
 import requestService from "api/request"
@@ -8,7 +8,7 @@ import { useAuthApp } from "store/useAuthApp"
 import { useGlobalAppStore } from "store/useGlobalApp"
 import actice_bg from 'assets/images/active.png'
 import LuckyWheelGuide from "./components/LuckyWheelGuide"
-import { Modal } from 'antd'
+import { Modal, notification } from 'antd'
 
 const dolar = '/icons/diamond-icon.svg'
 const dolar1 = '/icons/diamond-3.svg'
@@ -24,7 +24,7 @@ const rewardItems = [
   { id: 5, img: dolar1, label: "$ 0.2", reward: "0.2" },
   { id: 6, img: dolar, label: "$ 0.05", reward: "0.05" },
   { id: 7, img: dolar3, label: "$5", reward: "5" },
-  { id: 8, img: rw2, label: "Good luck", reward: "Lucky_Clover" },
+  { id: 8, img: "https://img.icons8.com/?size=100&id=Bg0jJhTaGmhp&format=png&color=000000", label: "Good luck", reward: "Lucky_Clover" },
 ];
 
 const LuckyWeel = () => {
@@ -81,6 +81,11 @@ const LuckyWeel = () => {
       animateSpin(targetIndex);
     } catch (error: any) {
       console.error(error);
+      notification.error({
+        message: error?.response?.data?.message,
+        duration: 2,
+        placement: "top"
+      })
       setIsSpinning(false);
     }
   };

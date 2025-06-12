@@ -69,7 +69,7 @@ const Treasure = () => {
       const timeoutId = setTimeout(() => {
         setItemWinner(null);  // Đặt lại itemWinner sau 5 giây
         setIsClick(false);    // Đặt lại trạng thái isClick
-      }, 3000);
+      }, 1700);
 
       // Dọn dẹp (cleanup) khi itemWinner thay đổi hoặc component unmount
       return () => clearTimeout(timeoutId);
@@ -119,12 +119,12 @@ const Treasure = () => {
                 index === activeIndex && itemWinner ?
                   <div className="mine-box-wrapper" key={index}>
                     <div className={clsx("mine-box-front", {
-                      "border-[.3rem] border-yellow-500 glow-yellow ": index === activeIndex
+                      "border-[.3rem] border-yellow-500 glow-yellow rounded-[12px]": index === activeIndex
                     })}>
                       <img
                         src={itemWinner?.img}
                         alt="image"
-                        className='animation-bounceCard !w-[5rem] !h-[5rem]'
+                        className='animation-bounceCard !w-[8rem] !h-[8rem]'
 
                       />
                       {

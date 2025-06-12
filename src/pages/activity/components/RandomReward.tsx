@@ -28,7 +28,7 @@ const RandomReward = () => {
         <img
           src={rewardItems[index]?.img}
           alt="image"
-          className='animation-bounceCard !w-[5rem] !h-[5rem]'
+          className='animation-bounceCard !w-[8rem] !h-[8rem]'
 
         />
         {
