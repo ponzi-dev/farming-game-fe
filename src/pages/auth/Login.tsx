@@ -3,6 +3,7 @@ import requestService from 'api/request';
 import logo from 'assets/images/logo.png'
 import TurnstileCaptcha from 'components/ui/TurnstileCaptcha';
 import { getJSONFromUrl, getRecaptchaToken } from 'lib/helpers';
+import { socket } from 'lib/socket';
 import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
@@ -51,10 +52,12 @@ const Login = () => {
           res?.data?.data?.tokens?.refreshToken
         );
         onSetUser(res?.data?.data?.user)
+        socket.emit("joinApp", res?.data?.data?.user._id);
         // message.success(res?.data?.message)
         handleLoading(false)
         setTimeout(() => {
-          navigate('/')
+          handleLoading(false)
+          navigate('/', { replace: true });
 
         }, 500)
 

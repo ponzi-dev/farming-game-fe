@@ -195,7 +195,7 @@ const TabBar = () => {
             <div className="flex justify-between items-center mb-[15px]">
               <span>{t("Tổng thu nhập")}</span>
               <span className="font-bold text-blue-500 flex items-center gap-1">
-                ≈ {investSelected?.incomePerDay * investSelected?.earningDay} <img src="/icons/diamond-icon.svg" width={18} />
+                ≈ {Number((investSelected?.incomePerDay * investSelected?.earningDay).toFixed(3))} <img src="/icons/diamond-icon.svg" width={18} />
               </span>
             </div>
           </div>

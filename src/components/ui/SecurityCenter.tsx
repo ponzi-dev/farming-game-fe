@@ -115,6 +115,8 @@ const SecurityCenter = ({ open, setOpen }: Props) => {
                         className="van-field__control"
                         placeholder={t("please enter the original password")}
                         aria-labelledby="van-field-1-label"
+                        inputMode={openChange === "pass_payment" ? "numeric" : undefined}
+                        pattern={openChange === "pass_payment" ? "[0-9]*" : undefined}
                         data-allow-mismatch="attribute"
                         {...register("oldPassword", {
                           required: t("Please enter the old password"),
@@ -167,6 +169,8 @@ const SecurityCenter = ({ open, setOpen }: Props) => {
                         placeholder={t("please enter the new password")}
                         aria-labelledby="van-field-2-label"
                         data-allow-mismatch="attribute"
+                        inputMode={openChange === "pass_payment" ? "numeric" : undefined}
+                        pattern={openChange === "pass_payment" ? "[0-9]*" : undefined}
                         {...register("newPassword", {
                           required: t("Please enter the newPassword"),
                           validate: value => {
@@ -211,6 +215,8 @@ const SecurityCenter = ({ open, setOpen }: Props) => {
                         type={shopPasss ? "text" : "password"}
                         id="van-field-3-input"
                         className="van-field__control"
+                        inputMode={openChange === "pass_payment" ? "numeric" : undefined}
+                        pattern={openChange === "pass_payment" ? "[0-9]*" : undefined}
                         placeholder={t("please enter the new password again")}
                         aria-labelledby="van-field-3-label"
                         data-allow-mismatch="attribute"

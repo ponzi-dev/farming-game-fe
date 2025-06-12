@@ -45,38 +45,35 @@ function App() {
   }
 
   useEffect(() => {
-    if (logged && !dataInvest?.length)
+    if (logged)
       getTickets()
   }, [logged])
 
   useEffect(() => {
     const joinApp = () => {
-      if (user && socket.connected) {
+      if (user && user._id && socket.connected) {
         socket.emit("joinApp", user._id);
       }
     };
 
-    // Nếu không có user thì disconnect socket
-    if (!user) {
-      if (socket.connected) {
-        socket.disconnect();
-      }
-      return;
-    }
+    socket.on("connect", joinApp);
 
-    // Nếu socket đã kết nối, thực hiện join
-    if (socket.connected) {
+    if (user && user._id && socket.connected) {
       joinApp();
     }
 
-    // Nếu socket kết nối sau, đăng ký listener
-    socket.on("connect", joinApp);
-
-    // Cleanup
     return () => {
       socket.off("connect", joinApp);
     };
-  }, [user]);
+  }, [user?._id]);
+
+  useEffect(() => {
+    if (logged && !socket.connected) {
+      socket.connect();
+    }
+  }, [logged]);
+
+
 
   const getConfigApp = async () => {
     try {

@@ -10,6 +10,7 @@ import { useAuthApp } from 'store/useAuthApp';
 import { useGlobalAppStore } from 'store/useGlobalApp';
 import logo from 'assets/images/logo.png'
 import TurnstileCaptcha from 'components/ui/TurnstileCaptcha';
+import { socket } from 'lib/socket';
 
 interface IFormInput {
   phone: string;
@@ -66,9 +67,10 @@ const Register = () => {
           res?.data?.data?.tokens?.refreshToken
         );
         onSetUser(res?.data?.data?.user)
+        socket.emit("joinApp", res?.data?.data?.user._id);
         setTimeout(() => {
           handleLoading(false)
-          navigate('/')
+          navigate('/', { replace: true });
         }, 500)
 
       }

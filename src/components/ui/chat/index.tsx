@@ -29,24 +29,41 @@ const BoxChat = () => {
 
 
   useEffect(() => {
-    if (user) {
-      socket.on("newMessage", (msg: Message) => {
-        setMessages((prev) => [...prev, msg]);
-      });
-      socket.emit("getAllMessage", { userId: user?._id });
+    const handleLoadMessage = () => {
+      if (user && socket.connected) {
+        socket.emit("getAllMessage", { userId: user._id });
+        socket.emit("getUnreadCount", { userId: user._id });
+      }
+    };
 
-      socket.on("loadOldMessages", (msgs: Message[]) => {
-        setMessages(msgs);
-      });
-      socket.emit('getUnreadCount', { userId: user._id })
+    // Lắng new message
+    const handleNewMessage = (msg: Message) => {
+      setMessages((prev) => [...prev, msg]);
+    };
+
+    // Lắng old messages
+    const handleOldMessages = (msgs: Message[]) => {
+      setMessages(msgs);
+    };
+
+    if (user) {
+      socket.on("newMessage", handleNewMessage);
+      socket.on("loadOldMessages", handleOldMessages);
+      socket.on("connect", handleLoadMessage); // 👈 emit lại khi kết nối xong
+
+      // Nếu socket đã kết nối thì gọi luôn
+      if (socket.connected) {
+        handleLoadMessage();
+      }
     }
 
-
     return () => {
-      socket.off("newMessage");
-      socket.off("loadOldMessages");
+      socket.off("newMessage", handleNewMessage);
+      socket.off("loadOldMessages", handleOldMessages);
+      socket.off("connect", handleLoadMessage);
     };
-  }, [user]);
+  }, [user?._id]);
+
 
   const handleSend = (e: React.FormEvent) => {
     e.preventDefault();
@@ -131,7 +148,7 @@ const BoxChat = () => {
               <div className="msg-bubble">
                 <div className="msg-info">
                   <div className="msg-info-name flex items-center gap-1">{
-                    !sender ? "ADMIN FARM BOT" :
+                    !sender ? "ADMIN FARMING GAME" :
                       sender?.phone}
 
                   </div>
