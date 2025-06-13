@@ -5,6 +5,7 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { DrawerLang } from './DrawerLang'
 import close_icon from 'assets/img_custom/clolor_dialog_close.png'
+import useBreakpoint from 'hooks/useBreakpoint'
 interface Props {
   setOpen: (val: boolean) => void,
   open: boolean,
@@ -14,6 +15,7 @@ interface Props {
 const SecurityCenter = ({ open, setOpen }: Props) => {
   const { t, i18n } = useTranslation()
   const [openChange, setOpenChange] = useState<string | boolean>(false)
+  const breakpoint = useBreakpoint()
   const [openLang, setOpenLang] = useState(false)
   const [shopPasss, setShowPass] = useState(false)
   const { register, handleSubmit, watch, control, reset, setValue, formState: { errors } } = useForm<{
@@ -61,7 +63,7 @@ const SecurityCenter = ({ open, setOpen }: Props) => {
       <Drawer
         open={!!openChange}
         onClose={() => setOpenChange(false)}
-        placement='bottom'
+        placement={breakpoint === 'mobile' ? 'bottom' : 'right'}
         height={"auto"}
         width={"100rem"}
         zIndex={999999}
@@ -120,6 +122,10 @@ const SecurityCenter = ({ open, setOpen }: Props) => {
                         data-allow-mismatch="attribute"
                         {...register("oldPassword", {
                           required: t("Please enter the old password"),
+                          pattern: openChange === "pass_payment" ? {
+                            value: /^[0-9]*$/,
+                            message: t("Only numbers are allowed")
+                          } : undefined,
                         })}
                       />
                       {/**/}
@@ -173,6 +179,10 @@ const SecurityCenter = ({ open, setOpen }: Props) => {
                         pattern={openChange === "pass_payment" ? "[0-9]*" : undefined}
                         {...register("newPassword", {
                           required: t("Please enter the newPassword"),
+                          pattern: openChange === "pass_payment" ? {
+                            value: /^[0-9]*$/,
+                            message: t("Only numbers are allowed")
+                          } : undefined,
                           validate: value => {
                             if (openChange === "pass_payment" && value.length !== 6) {
                               return t("Password must be at exactly 6 characters");
@@ -213,6 +223,7 @@ const SecurityCenter = ({ open, setOpen }: Props) => {
                     <div className="van-field__body">
                       <input
                         type={shopPasss ? "text" : "password"}
+                        maxLength={openChange === "pass_payment" ? 6 : undefined}
                         id="van-field-3-input"
                         className="van-field__control"
                         inputMode={openChange === "pass_payment" ? "numeric" : undefined}
@@ -222,6 +233,10 @@ const SecurityCenter = ({ open, setOpen }: Props) => {
                         data-allow-mismatch="attribute"
                         {...register("confirmPassword", {
                           required: t("Please enter the confirmPassword"),
+                          pattern: openChange === "pass_payment" ? {
+                            value: /^[0-9]*$/,
+                            message: t("Only numbers are allowed")
+                          } : undefined,
                           validate: value =>
                             value === newPassword || t("Passwords do not match"),
                         })}

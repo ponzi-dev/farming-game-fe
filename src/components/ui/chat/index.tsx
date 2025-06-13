@@ -66,7 +66,7 @@ const BoxChat = () => {
   }, [user?._id]);
 
   const blacklist = ["xấu", "bậy", "chửi", "fuck", "shit", "đm", "ngu", "sập",
-    "app vịt", "app gà"
+    "app vịt", "app gà", "nào sập"
   ]; // ví dụ
 
   function filterBadWords(text: string, blacklist: string[]): string {
