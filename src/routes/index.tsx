@@ -170,16 +170,17 @@ const RenderRouter = () => {
       return navigate(targetPath);
     }
 
-    if ((pathname === '/login' || pathname === '/register') && logged) {
+    if ((pathname === '/login' || pathname === '/register' || r) && logged) {
       return navigate('/');
     }
     getUser();
-  }, [logged, isCallBackUser]);
+  }, [logged, isCallBackUser, r]);
 
 
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [pathname])
+
   return (
     <div className="max-w-[100rem] m-auto w-full min-h-screen flex flex-col viewport-fake ">
       <div className="min-h-screen bg-[#fff]">

@@ -19,7 +19,7 @@ const RightSidebar = () => {
     <>
 
       {
-        !(pathname === '/order' || pathname.startsWith('/farm/')) && user &&
+        user &&
         <div className="fixed z-[999] bottom-[20%]  sm:bottom-[12%] right-[5px] sm:right-[20%] lg:right-[26%] xl:right-[31%] cursor-pointer"
 
         >
