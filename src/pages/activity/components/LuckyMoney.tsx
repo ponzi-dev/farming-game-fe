@@ -69,7 +69,18 @@ const LuckyMoney = () => {
               Date.now() <= event?.timeEnd &&
               Date.now() >= event?.timeStart &&
               <div className="absolute  w-full text-center top-[-7px] left-0 bg-red-600 text-white text-[8px] px-[1px] py-[3px] rounded-full animate-bounce z-30 shadow-md">
-                Event
+                <Countdown
+                  date={event?.timeEnd}
+                  renderer={({ days, hours, minutes, seconds, completed }) => {
+                    if (completed) {
+                      return <span>{t("Đã kết thúc")}</span>;
+                    }
+
+                    const pad = (n: any) => String(n)?.padStart(2, '0');
+                    const formatted = `${days > 0 ? `${days} ngày ` : ''}${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
+                    return <span>{formatted}</span>;
+                  }}
+                />
               </div>
             }
 
