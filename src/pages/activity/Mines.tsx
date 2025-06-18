@@ -53,7 +53,7 @@ const Treasure = () => {
       }
     } catch (error: any) {
       notification.error({
-        message: error?.response?.data?.message,
+        message: error?.response?.data?.message || "Please try agian !!!",
         duration: 3,
         placement: 'top'
       })
