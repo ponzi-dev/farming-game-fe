@@ -102,7 +102,7 @@ const Profile = () => {
             </div>
             <div className='flex items-center justify-end '>
               <span className='!font-[900] !text-[#fff]'>
-                {Number(user?.realBalance)?.toFixed(3)}
+                {Number(user?.realBalance?.toFixed(3))}
               </span>
 
               <img src={"/icons/diamond-icon.svg"} alt='' className='size-[30px] ml-2' />
